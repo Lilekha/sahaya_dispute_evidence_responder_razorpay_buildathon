@@ -1,0 +1,32 @@
+{
+  "model": "RandomForest + isotonic calibration",
+  "n_train": 890,
+  "n_test": 223,
+  "test_roc_auc": 0.717,
+  "test_pr_auc": 0.6338,
+  "test_brier": 0.2146,
+  "precision_at_economic_threshold": 0.521,
+  "recall_at_economic_threshold": 0.6078,
+  "net_recovery_INR": {
+    "always_accept": 0.0,
+    "always_contest": 297544.65,
+    "model": 301546.56,
+    "perfect_foresight": 382392.15
+  },
+  "uplift_vs_always_contest_INR": 4001.9099999999744,
+  "contest_rate": 0.5336,
+  "false_positive_cost_INR": 38797.5,
+  "false_negative_cost_INR": 42048.09,
+  "top_features": {
+    "req_miss": 0.0931,
+    "reason_code_UNAUTHORIZED_TRANSACTION": 0.042,
+    "n_unavailable": 0.0332,
+    "avg_quality": 0.0287,
+    "reason_code_MERCHANDISE_NOT_RECEIVED": 0.0282,
+    "req_met": 0.0246,
+    "dispute_amount": 0.0204,
+    "n_required": 0.0194,
+    "dispute_lag_days": 0.0109,
+    "customer_account_age_days": 0.0083
+  }
+}
