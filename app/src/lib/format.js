@@ -35,6 +35,21 @@ export function humanReason(code) {
   return REASON_LABELS[code] ?? code
 }
 
+const dateFormatter = new Intl.DateTimeFormat('en-IN', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+})
+
+// dispute_created_at/respond_by/evidence_timestamp are "YYYY-MM-DD HH:MM:SS",
+// not standard ISO 8601 — parsed manually since engines vary on that format.
+export function formatDate(dateTimeStr) {
+  if (!dateTimeStr) return '—'
+  const [datePart] = dateTimeStr.split(' ')
+  const [year, month, day] = datePart.split('-').map(Number)
+  return dateFormatter.format(new Date(year, month - 1, day))
+}
+
 export function daysLeft(days) {
   if (days == null || Number.isNaN(days)) return '—'
   if (days < 0) {
