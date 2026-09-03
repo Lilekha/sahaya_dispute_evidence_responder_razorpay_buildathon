@@ -1,14 +1,9 @@
 import { AlertTriangle, Check, Minus } from 'lucide-react'
 import ProbabilityBar from './ProbabilityBar'
-import { formatDate } from '../lib/format'
+import { formatDate, sentenceCase } from '../lib/format'
 import { colors } from '../lib/theme'
 
 const STATUS_ORDER = { SUBMIT: 0, GAP: 1, SKIP: 2 }
-
-function sentenceCase(str) {
-  if (!str) return ''
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
 
 export default function EvidenceChecklist({ dispute }) {
   const sortedSlots = [...dispute.evidence_slots].sort(

@@ -50,6 +50,11 @@ export function formatDate(dateTimeStr) {
   return dateFormatter.format(new Date(year, month - 1, day))
 }
 
+export function sentenceCase(str) {
+  if (!str) return ''
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 export function daysLeft(days) {
   if (days == null || Number.isNaN(days)) return '—'
   if (days < 0) {
