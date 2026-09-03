@@ -11,7 +11,7 @@ export default function EconomicsChart({ economics }) {
   ]
 
   return (
-    <ResponsiveContainer width="100%" height={200}>
+    <ResponsiveContainer width="100%" height={200} className="num">
       <BarChart data={data} layout="vertical" margin={{ top: 4, right: 24, bottom: 4, left: 8 }}>
         <XAxis
           type="number"
@@ -32,7 +32,7 @@ export default function EconomicsChart({ economics }) {
           formatter={(value) => inr(value)}
           contentStyle={{ borderRadius: 4, borderColor: colors.line, fontSize: 12 }}
         />
-        <Bar dataKey="value" radius={[0, 4, 4, 0]} barSize={20}>
+        <Bar dataKey="value" radius={[0, 4, 4, 0]} barSize={20} isAnimationActive={false}>
           {data.map((entry) => (
             <Cell key={entry.label} fill={entry.label === 'SaHaYa' ? colors.dodger : colors.slate} />
           ))}

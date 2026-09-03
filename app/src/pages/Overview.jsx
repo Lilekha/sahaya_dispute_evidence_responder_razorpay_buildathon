@@ -44,7 +44,7 @@ export default function Overview() {
         ]}
       />
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="border border-line bg-surface p-4">
           <h2 className="text-base font-semibold text-ink">Recommendation split</h2>
           <div className="mt-4 flex h-3 w-full overflow-hidden rounded border border-line">

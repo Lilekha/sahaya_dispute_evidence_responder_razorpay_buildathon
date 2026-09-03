@@ -46,8 +46,8 @@ export default function DisputeDetail() {
   const rocAuc = metrics?.win_prediction?.test_roc_auc
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
-      <div className="flex flex-col gap-6 lg:col-span-3">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-5">
+      <div className="flex flex-col gap-6 md:col-span-3">
         <div>
           <div className="flex items-baseline gap-3">
             <h1 className="text-[20px] font-semibold text-ink">{dispute.dispute_id}</h1>
@@ -93,7 +93,7 @@ export default function DisputeDetail() {
         )}
       </div>
 
-      <div className="flex flex-col gap-6 lg:col-span-2">
+      <div className="flex flex-col gap-6 md:col-span-2">
         <DriverList drivers={dispute.top_drivers} />
 
         <div className="border border-line bg-surface p-4">

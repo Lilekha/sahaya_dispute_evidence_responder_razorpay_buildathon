@@ -17,7 +17,7 @@ export default function EvidenceGapChart({ disputes }) {
     .sort((a, b) => b.share - a.share)
 
   return (
-    <ResponsiveContainer width="100%" height={220}>
+    <ResponsiveContainer width="100%" height={220} className="num">
       <BarChart data={data} layout="vertical" margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
         <XAxis
           type="number"
@@ -39,7 +39,13 @@ export default function EvidenceGapChart({ disputes }) {
           formatter={(value) => pct(value, 0)}
           contentStyle={{ borderRadius: 4, borderColor: colors.line, fontSize: 12 }}
         />
-        <Bar dataKey="share" fill={colors.gap} radius={[0, 4, 4, 0]} barSize={16} />
+        <Bar
+          dataKey="share"
+          fill={colors.gap}
+          radius={[0, 4, 4, 0]}
+          barSize={16}
+          isAnimationActive={false}
+        />
       </BarChart>
     </ResponsiveContainer>
   )

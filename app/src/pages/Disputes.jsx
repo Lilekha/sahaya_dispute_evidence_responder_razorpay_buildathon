@@ -156,7 +156,7 @@ export default function Disputes() {
                         className="absolute inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dodger focus-visible:ring-inset"
                         aria-label={`View dispute ${d.dispute_id}`}
                       />
-                      <span className="relative text-ink">{d.dispute_id}</span>
+                      <span className="num relative text-ink">{d.dispute_id}</span>
                     </td>
                     <td className="px-3 align-middle text-ink">{humanReason(d.reason_code)}</td>
                     <td className="num px-3 text-right align-middle text-ink">

@@ -11,7 +11,7 @@ export default function Methodology() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="border border-line bg-surface p-4">
           <h2 className="text-base font-semibold text-ink">Evidence selection</h2>
           <dl className="mt-4 flex flex-col gap-2 text-sm">
@@ -72,7 +72,7 @@ export default function Methodology() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="border border-line bg-surface p-4">
           <div className="text-[11px] text-slate">Cost of contesting a losing case</div>
           <div className="num mt-1 text-[28px] font-semibold text-ink">

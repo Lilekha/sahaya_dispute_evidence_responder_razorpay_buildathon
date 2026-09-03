@@ -15,7 +15,7 @@ export default function DeadlineChart({ disputes }) {
   }))
 
   return (
-    <ResponsiveContainer width="100%" height={180}>
+    <ResponsiveContainer width="100%" height={180} className="num">
       <BarChart data={data} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
         <XAxis
           dataKey="label"
@@ -34,7 +34,7 @@ export default function DeadlineChart({ disputes }) {
           formatter={(value) => [`${value} disputes`, undefined]}
           contentStyle={{ borderRadius: 4, borderColor: colors.line, fontSize: 12 }}
         />
-        <Bar dataKey="count" radius={[4, 4, 0, 0]} barSize={48}>
+        <Bar dataKey="count" radius={[4, 4, 0, 0]} barSize={48} isAnimationActive={false}>
           {data.map((entry, index) => (
             <Cell key={entry.label} fill={index === 0 ? colors.gap : colors.dodger} />
           ))}

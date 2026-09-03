@@ -48,7 +48,7 @@ function AppShell() {
   return (
     <div className="min-h-screen bg-canvas">
       <Sidebar />
-      <div className="ml-60 flex min-h-screen flex-col">
+      <div className="ml-16 flex min-h-screen flex-col md:ml-60">
         <Topbar />
         <main className="mx-auto w-full max-w-[1280px] flex-1 p-6">
           <Routes>
@@ -59,6 +59,10 @@ function AppShell() {
             <Route path="/methodology" element={<Methodology />} />
           </Routes>
         </main>
+        <footer className="border-t border-line px-6 py-4 text-[11px] text-slate">
+          SaHaYa — Saboot Hai Yahan · Built on Razorpay&rsquo;s dispute schema · Prototype, not
+          affiliated with Razorpay
+        </footer>
       </div>
     </div>
   )

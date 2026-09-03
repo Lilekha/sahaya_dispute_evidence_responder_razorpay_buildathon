@@ -12,7 +12,7 @@ export default function ReasonValueChart({ disputes }) {
     .sort((a, b) => b.value - a.value)
 
   return (
-    <ResponsiveContainer width="100%" height={220}>
+    <ResponsiveContainer width="100%" height={220} className="num">
       <BarChart data={data} layout="vertical" margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
         <XAxis
           type="number"
@@ -33,7 +33,13 @@ export default function ReasonValueChart({ disputes }) {
           formatter={(value) => inr(value)}
           contentStyle={{ borderRadius: 4, borderColor: colors.line, fontSize: 12 }}
         />
-        <Bar dataKey="value" fill={colors.dodger} radius={[0, 4, 4, 0]} barSize={16} />
+        <Bar
+          dataKey="value"
+          fill={colors.dodger}
+          radius={[0, 4, 4, 0]}
+          barSize={16}
+          isAnimationActive={false}
+        />
       </BarChart>
     </ResponsiveContainer>
   )

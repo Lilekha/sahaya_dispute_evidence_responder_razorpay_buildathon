@@ -16,7 +16,7 @@ function CompletenessHistogram({ disputes }) {
   const data = COMPLETENESS_BUCKET_LABELS.map((label, i) => ({ label, count: buckets[i] }))
 
   return (
-    <ResponsiveContainer width="100%" height={220}>
+    <ResponsiveContainer width="100%" height={220} className="num">
       <BarChart data={data} margin={{ top: 4, right: 16, bottom: 4, left: 8 }}>
         <XAxis
           dataKey="label"
@@ -35,7 +35,13 @@ function CompletenessHistogram({ disputes }) {
           formatter={(value) => [`${value} disputes`, undefined]}
           contentStyle={{ borderRadius: 4, borderColor: colors.line, fontSize: 12 }}
         />
-        <Bar dataKey="count" fill={colors.dodger} radius={[4, 4, 0, 0]} barSize={40} />
+        <Bar
+          dataKey="count"
+          fill={colors.dodger}
+          radius={[4, 4, 0, 0]}
+          barSize={40}
+          isAnimationActive={false}
+        />
       </BarChart>
     </ResponsiveContainer>
   )
@@ -121,7 +127,7 @@ export default function Evidence() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="border border-line bg-surface p-4">
           <h2 className="text-base font-semibold text-ink">
             Which documents are missing most often
