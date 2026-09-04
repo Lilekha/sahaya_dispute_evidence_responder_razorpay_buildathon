@@ -21,6 +21,7 @@ export default function StatRow({ items }) {
         <div key={item.label} className={`border-line p-4 ${borderClasses(index)}`}>
           <div className="text-[11px] text-slate">{item.label}</div>
           <div className="num mt-1 text-[28px] font-semibold text-ink">{item.value}</div>
+          {item.note && <div className="mt-1 text-[11px] text-slate">{item.note}</div>}
         </div>
       ))}
     </div>

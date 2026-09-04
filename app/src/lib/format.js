@@ -29,6 +29,7 @@ const REASON_LABELS = {
   CREDIT_NOT_PROCESSED: 'Refund not processed',
   RECURRING_BILLING_DISPUTE: 'Subscription charge disputed',
   DUPLICATE_TRANSACTION: 'Charged twice',
+  SERVICE_NOT_RENDERED: 'Service not provided',
 }
 
 export function humanReason(code) {

@@ -17,7 +17,7 @@ export default function Sidebar() {
         </span>
         <div className="hidden text-[20px] font-semibold text-white md:block">SaHaYa</div>
         <div className="hidden text-[11px] font-normal text-white/60 md:block">
-          saboot hai yahan
+          Saboot Hai Yahan!
         </div>
       </div>
       <nav className="flex-1 px-2">

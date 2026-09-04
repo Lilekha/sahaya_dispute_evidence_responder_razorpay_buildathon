@@ -100,6 +100,22 @@ export default function DisputeDetail() {
           <h2 className="text-base font-semibold text-ink">Case facts</h2>
           <dl className="mt-4 flex flex-col gap-2 text-sm">
             <div className="flex justify-between gap-4">
+              <dt className="text-slate">Customer</dt>
+              <dd className="text-ink">{dispute.customer_name ?? '—'}</dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-slate">City</dt>
+              <dd className="text-ink">{dispute.customer_city ?? '—'}</dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-slate">Prior orders</dt>
+              <dd className="num text-ink">{dispute.customer_previous_orders ?? '—'}</dd>
+            </div>
+            <div className="flex justify-between gap-4">
+              <dt className="text-slate">Prior disputes</dt>
+              <dd className="num text-ink">{dispute.customer_previous_disputes ?? '—'}</dd>
+            </div>
+            <div className="flex justify-between gap-4">
               <dt className="text-slate">Transaction ID</dt>
               <dd className="num text-ink">{dispute.transaction_id}</dd>
             </div>

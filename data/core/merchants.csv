@@ -1,9 +1,9 @@
 merchant_id,merchant_name,archetype,industry,city,business_size,fulfillment_type,subscription_supported,documentation_maturity,price_points,merchant_age_months,refund_policy_documented,fulfillment_tracking_available,annual_transactions
-M000001,Loops & Knots by Ananya,social_seller,social_seller,Kolkata,small,physical_delivery,0,0.2,[],56,0,1,720
+M000001,Loops & Knots by Ananya,social_seller,social_seller,Kolkata,small,physical_delivery,0,0.2,[],56,0,1,1800
 M000002,SoleCraft,d2c_brand,d2c_brand,Delhi,medium,physical_delivery,0,0.8394736058118728,[],16,0,1,3800
 M000003,Gyan IAS Study Circle,subscription_edtech,subscription_edtech,Delhi,medium,digital_service,1,0.7322279403980707,"[499, 2999, 9999, 14999]",112,1,0,3800
 M000004,CodePilot,saas_tools,saas_tools,Pune,small,digital_service,1,0.944552322654166,"[399, 799, 1499, 9999]",101,1,0,860
-M000005,FitForge,fitness_membership,fitness_membership,Hyderabad,small,membership_service,1,0.6016175480170748,"[999, 1499, 3999, 14999]",28,1,0,860
+M000005,FitForge,fitness_membership,fitness_membership,Hyderabad,small,membership_service,1,0.6016175480170748,"[999, 1499, 3999, 14999]",28,1,0,1600
 M000006,TripWell,travel_booking,travel_booking,Chennai,medium,booking_service,0,0.5287607531574458,[],23,0,0,3800
 M000007,SwitchCart,marketplace_retailer,marketplace_retailer,Bangalore,large,physical_delivery,0,0.9689524311815635,[],117,1,1,8500
 M000008,Merchant_8,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.3140919412069738,[],59,1,1,89
@@ -11,7 +11,7 @@ M000009,Merchant_9,social_seller,social_seller,Kolkata,micro,physical_delivery,0
 M000010,Merchant_10,social_seller,social_seller,Pune,micro,physical_delivery,0,0.3739627989365021,[],56,0,1,89
 M000011,Merchant_11,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.38005302040044986,[],41,0,1,89
 M000012,Merchant_12,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.40095287149936043,[],50,1,1,89
-M000013,Merchant_13,social_seller,social_seller,Kolkata,micro,physical_delivery,0,0.37649910079499516,[],22,1,1,90
+M000013,Merchant_13,social_seller,social_seller,Kolkata,micro,physical_delivery,0,0.37649910079499516,[],22,1,1,89
 M000014,Merchant_14,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.24147245395020112,[],96,0,1,89
 M000015,Merchant_15,social_seller,social_seller,Delhi,micro,physical_delivery,0,0.381033075725267,[],95,0,1,89
 M000016,Merchant_16,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.35374823919057874,[],22,1,1,89
@@ -20,10 +20,10 @@ M000018,Merchant_18,social_seller,social_seller,Kolkata,micro,physical_delivery,
 M000019,Merchant_19,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.3518414321490827,[],40,1,1,90
 M000020,Merchant_20,social_seller,social_seller,Pune,micro,physical_delivery,0,0.3273434778464725,[],30,0,1,89
 M000021,Merchant_21,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.41068061465363326,[],32,1,1,89
-M000022,Merchant_22,social_seller,social_seller,Pune,micro,physical_delivery,0,0.2962767784043993,[],39,0,1,91
+M000022,Merchant_22,social_seller,social_seller,Pune,micro,physical_delivery,0,0.2962767784043993,[],39,0,1,90
 M000023,Merchant_23,social_seller,social_seller,Chennai,micro,physical_delivery,0,0.3514064304682557,[],96,0,1,89
 M000024,Merchant_24,social_seller,social_seller,Bangalore,micro,physical_delivery,0,0.3212773722880141,[],99,1,1,89
-M000025,Merchant_25,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.24454241462677212,[],16,0,1,90
+M000025,Merchant_25,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.24454241462677212,[],16,0,1,89
 M000026,Merchant_26,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.33237544605027747,[],24,0,1,90
 M000027,Merchant_27,social_seller,social_seller,Chennai,micro,physical_delivery,0,0.2704624205426337,[],86,0,1,90
 M000028,Merchant_28,social_seller,social_seller,Delhi,micro,physical_delivery,0,0.3162042452192965,[],40,0,1,89
@@ -62,7 +62,7 @@ M000060,Merchant_60,social_seller,social_seller,Mumbai,micro,physical_delivery,0
 M000061,Merchant_61,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.2645515864822972,[],101,1,1,90
 M000062,Merchant_62,social_seller,social_seller,Bangalore,micro,physical_delivery,0,0.27585366163154784,[],74,0,1,90
 M000063,Merchant_63,social_seller,social_seller,Delhi,micro,physical_delivery,0,0.27928693314291464,[],41,0,1,90
-M000064,Merchant_64,social_seller,social_seller,Chennai,micro,physical_delivery,0,0.43436528521219353,[],63,1,1,91
+M000064,Merchant_64,social_seller,social_seller,Chennai,micro,physical_delivery,0,0.43436528521219353,[],63,1,1,90
 M000065,Merchant_65,social_seller,social_seller,Delhi,micro,physical_delivery,0,0.24278725754164032,[],32,1,1,91
 M000066,Merchant_66,social_seller,social_seller,Pune,micro,physical_delivery,0,0.3755317347225715,[],20,0,1,89
 M000067,Merchant_67,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.37885248712857733,[],72,1,1,90
@@ -72,11 +72,11 @@ M000070,Merchant_70,social_seller,social_seller,Pune,micro,physical_delivery,0,0
 M000071,Merchant_71,social_seller,social_seller,Bangalore,micro,physical_delivery,0,0.3725728425527165,[],115,1,1,90
 M000072,Merchant_72,social_seller,social_seller,Chennai,micro,physical_delivery,0,0.42496168586240546,[],8,0,1,90
 M000073,Merchant_73,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.3667950223362171,[],18,1,1,89
-M000074,Merchant_74,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.32382286386326076,[],117,0,1,92
+M000074,Merchant_74,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.32382286386326076,[],117,0,1,91
 M000075,Merchant_75,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.4266046443200423,[],98,0,1,89
 M000076,Merchant_76,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.3969526898504375,[],8,1,1,89
 M000077,Merchant_77,social_seller,social_seller,Delhi,micro,physical_delivery,0,0.4058857229765473,[],97,1,1,90
-M000078,Merchant_78,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.3461539181198107,[],75,0,1,90
+M000078,Merchant_78,social_seller,social_seller,Hyderabad,micro,physical_delivery,0,0.3461539181198107,[],75,0,1,89
 M000079,Merchant_79,social_seller,social_seller,Bangalore,micro,physical_delivery,0,0.36062143146774517,[],53,0,1,89
 M000080,Merchant_80,social_seller,social_seller,Mumbai,micro,physical_delivery,0,0.32517641727470203,[],80,0,1,89
 M000081,Merchant_81,social_seller,social_seller,Chennai,micro,physical_delivery,0,0.33077937641526,[],34,1,1,89
@@ -86,216 +86,216 @@ M000084,Merchant_84,social_seller,social_seller,Bangalore,micro,physical_deliver
 M000085,Merchant_85,social_seller,social_seller,Kolkata,micro,physical_delivery,0,0.42419409449749007,[],25,1,1,89
 M000086,Merchant_86,social_seller,social_seller,Chennai,micro,physical_delivery,0,0.27072267903841174,[],19,1,1,89
 M000087,Merchant_87,social_seller,social_seller,Delhi,micro,physical_delivery,0,0.25107908183285205,[],26,1,1,89
-M000088,Merchant_88,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.7161429053599013,"[1499, 4999, 9999, 24999]",97,1,0,535
-M000089,Merchant_89,fitness_membership,fitness_membership,Delhi,small,membership_service,1,0.48629968191930484,"[1499, 8999, 14999, 24999]",11,1,0,536
-M000090,Merchant_90,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.4703343805807432,"[999, 8999, 14999, 24999]",102,0,0,538
-M000091,Merchant_91,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.6459141361173186,"[5999, 14999, 24999]",95,1,0,535
-M000092,Merchant_92,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.552844574038083,"[3999, 5999, 8999, 14999]",34,1,0,535
-M000093,Merchant_93,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.7955754548047492,[],53,1,1,535
-M000094,Merchant_94,d2c_brand,d2c_brand,Bangalore,small,physical_delivery,0,0.7732784899652495,[],90,1,1,535
-M000095,Merchant_95,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.8371486690911891,[],40,0,1,536
-M000096,Merchant_96,saas_tools,saas_tools,Kolkata,small,digital_service,1,0.8761820856600158,"[799, 2999, 4999, 19999]",29,1,0,536
-M000097,Merchant_97,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.5765835258535241,"[1499, 8999, 14999]",85,0,0,535
-M000098,Merchant_98,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.572875948108384,"[999, 3999, 5999]",66,1,0,535
-M000099,Merchant_99,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.6417760491818161,"[2499, 5999, 24999]",97,0,0,535
-M000100,Merchant_100,social_seller,social_seller,Delhi,small,physical_delivery,0,0.35801517907166186,[],11,0,1,536
-M000101,Merchant_101,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.27425826081855775,[],70,0,1,536
-M000102,Merchant_102,subscription_edtech,subscription_edtech,Chennai,small,digital_service,1,0.6845263551026246,"[4999, 9999, 24999]",33,0,0,535
-M000103,Merchant_103,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.6039467177002246,"[499, 2999, 4999, 14999]",95,0,0,536
-M000104,Merchant_104,saas_tools,saas_tools,Bangalore,small,digital_service,1,0.9596733094723071,"[4999, 9999, 49999]",67,1,0,535
-M000105,Merchant_105,d2c_brand,d2c_brand,Mumbai,small,physical_delivery,0,0.7295566745084383,[],113,1,1,535
-M000106,Merchant_106,saas_tools,saas_tools,Hyderabad,small,digital_service,1,0.9259371417354756,"[799, 2999, 49999]",76,1,0,535
-M000107,Merchant_107,subscription_edtech,subscription_edtech,Delhi,small,digital_service,1,0.7773263089848644,"[4999, 9999, 24999]",103,1,0,535
-M000108,Merchant_108,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.35765159999384416,[],9,1,1,535
-M000109,Merchant_109,saas_tools,saas_tools,Mumbai,small,digital_service,1,0.8708635923683493,"[1499, 4999, 19999, 49999]",40,0,0,537
-M000110,Merchant_110,saas_tools,saas_tools,Hyderabad,small,digital_service,1,0.8021176821992221,"[399, 799, 9999, 49999]",10,0,0,535
-M000111,Merchant_111,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.3731369472213074,[],80,1,1,535
-M000112,Merchant_112,saas_tools,saas_tools,Delhi,small,digital_service,1,0.7857999006408939,"[799, 2999, 9999, 49999]",7,1,0,536
-M000113,Merchant_113,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.45723254209893927,"[999, 1499, 24999]",98,1,0,536
-M000114,Merchant_114,d2c_brand,d2c_brand,Hyderabad,small,physical_delivery,0,0.7114463880306521,[],82,0,1,536
-M000115,Merchant_115,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.6044216798208761,"[3999, 5999, 8999, 24999]",20,1,0,535
-M000116,Merchant_116,subscription_edtech,subscription_edtech,Delhi,small,digital_service,1,0.7060023689152798,"[499, 999, 2999, 9999]",7,0,0,536
-M000117,Merchant_117,d2c_brand,d2c_brand,Hyderabad,small,physical_delivery,0,0.8960409569797364,[],76,1,1,535
-M000118,Merchant_118,social_seller,social_seller,Kolkata,small,physical_delivery,0,0.24847011031603344,[],31,0,1,536
-M000119,Merchant_119,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.4846255692845007,"[999, 1499, 8999]",58,0,0,535
-M000120,Merchant_120,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8144826299917275,[],57,0,1,536
-M000121,Merchant_121,social_seller,social_seller,Bangalore,small,physical_delivery,0,0.3002685265029436,[],72,0,1,537
-M000122,Merchant_122,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8881188819391037,[],24,1,1,536
-M000123,Merchant_123,social_seller,social_seller,Pune,small,physical_delivery,0,0.32080687814815323,[],60,1,1,535
-M000124,Merchant_124,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.5056151091562515,"[999, 2499, 5999]",52,1,0,535
-M000125,Merchant_125,saas_tools,saas_tools,Bangalore,small,digital_service,1,0.8617566218857394,"[799, 4999, 9999, 49999]",54,1,0,535
-M000126,Merchant_126,social_seller,social_seller,Delhi,small,physical_delivery,0,0.35449158662442315,[],46,0,1,535
-M000127,Merchant_127,subscription_edtech,subscription_edtech,Delhi,small,digital_service,1,0.7095896964402421,"[999, 1499, 2999, 9999]",55,1,0,536
-M000128,Merchant_128,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.6825478489213517,"[4999, 9999, 24999]",103,1,0,535
-M000129,Merchant_129,subscription_edtech,subscription_edtech,Mumbai,small,digital_service,1,0.7399740821527674,"[999, 2999, 14999]",19,1,0,535
-M000130,Merchant_130,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.46111358338137565,"[999, 1499, 2499, 3999]",13,1,0,535
-M000131,Merchant_131,saas_tools,saas_tools,Kolkata,small,digital_service,1,0.9454346849041373,"[1499, 4999, 9999, 19999]",19,1,0,537
-M000132,Merchant_132,subscription_edtech,subscription_edtech,Kolkata,small,digital_service,1,0.7790928945167275,"[1499, 4999, 14999, 24999]",92,1,0,535
-M000133,Merchant_133,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.7021455289951353,[],30,1,1,536
-M000134,Merchant_134,subscription_edtech,subscription_edtech,Chennai,small,digital_service,1,0.6131813735753068,"[1499, 9999, 24999]",29,0,0,535
-M000135,Merchant_135,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.478319177713755,"[2499, 8999, 14999, 24999]",55,1,0,538
-M000136,Merchant_136,fitness_membership,fitness_membership,Delhi,small,membership_service,1,0.4861853304461737,"[1499, 14999, 24999]",28,0,0,537
-M000137,Merchant_137,d2c_brand,d2c_brand,Hyderabad,small,physical_delivery,0,0.8172890346029592,[],62,1,1,535
-M000138,Merchant_138,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.8687176769525082,[],104,1,1,536
-M000139,Merchant_139,saas_tools,saas_tools,Pune,small,digital_service,1,0.914040651070271,"[399, 2999, 9999, 49999]",44,1,0,535
-M000140,Merchant_140,d2c_brand,d2c_brand,Chennai,small,physical_delivery,0,0.8537255178918759,[],85,1,1,535
-M000141,Merchant_141,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.63191044877427,"[999, 3999, 14999]",63,1,0,538
-M000142,Merchant_142,subscription_edtech,subscription_edtech,Delhi,small,digital_service,1,0.6597105013403082,"[9999, 14999, 24999]",6,1,0,535
-M000143,Merchant_143,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.7049646263597146,[],112,1,1,535
-M000144,Merchant_144,subscription_edtech,subscription_edtech,Kolkata,small,digital_service,1,0.6996954383115473,"[499, 2999, 24999]",66,0,0,535
-M000145,Merchant_145,saas_tools,saas_tools,Delhi,small,digital_service,1,0.9040715419316088,"[1499, 9999, 19999, 49999]",116,1,0,536
-M000146,Merchant_146,subscription_edtech,subscription_edtech,Kolkata,small,digital_service,1,0.6028208142367275,"[1499, 2999, 4999, 9999]",53,0,0,536
-M000147,Merchant_147,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.5076456490975811,"[3999, 8999, 14999, 24999]",10,0,0,536
-M000148,Merchant_148,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.6471080338989853,"[2499, 3999, 8999]",14,1,0,536
-M000149,Merchant_149,saas_tools,saas_tools,Mumbai,small,digital_service,1,0.8910923420275528,"[799, 2999, 4999, 19999]",48,1,0,536
-M000150,Merchant_150,d2c_brand,d2c_brand,Mumbai,small,physical_delivery,0,0.8350611257334969,[],93,1,1,536
-M000151,Merchant_151,saas_tools,saas_tools,Mumbai,small,digital_service,1,0.9530913096111326,"[1499, 2999, 9999, 49999]",77,1,0,535
-M000152,Merchant_152,subscription_edtech,subscription_edtech,Bangalore,small,digital_service,1,0.68292586842327,"[999, 4999, 24999]",86,1,0,536
-M000153,Merchant_153,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.4975316726721195,"[2499, 3999, 8999]",40,0,0,536
-M000154,Merchant_154,subscription_edtech,subscription_edtech,Mumbai,small,digital_service,1,0.6349650101510135,"[2999, 14999, 24999]",83,0,0,535
-M000155,Merchant_155,d2c_brand,d2c_brand,Chennai,small,physical_delivery,0,0.8614863211952564,[],120,1,1,535
-M000156,Merchant_156,saas_tools,saas_tools,Kolkata,small,digital_service,1,0.8073642556059253,"[399, 799, 4999]",90,1,0,537
-M000157,Merchant_157,subscription_edtech,subscription_edtech,Mumbai,small,digital_service,1,0.763059752057111,"[999, 1499, 14999]",13,1,0,535
-M000158,Merchant_158,subscription_edtech,subscription_edtech,Bangalore,small,digital_service,1,0.6706559833000327,"[4999, 9999, 24999]",108,0,0,536
-M000159,Merchant_159,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.5581713273889903,"[1499, 2499, 3999, 14999]",110,1,0,536
-M000160,Merchant_160,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.5681489588327533,"[999, 2499, 3999, 8999]",26,0,0,536
-M000161,Merchant_161,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.29664938665002283,[],70,0,1,535
-M000162,Merchant_162,subscription_edtech,subscription_edtech,Hyderabad,small,digital_service,1,0.6676772517168387,"[1499, 4999, 14999, 24999]",83,0,0,535
-M000163,Merchant_163,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.48703586899071355,"[999, 2499, 3999]",115,0,0,536
-M000164,Merchant_164,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.4571685502836327,"[8999, 14999, 24999]",11,1,0,535
-M000165,Merchant_165,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.7910235684823526,[],65,1,1,536
-M000166,Merchant_166,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.26232007364984533,[],79,1,1,536
-M000167,Merchant_167,d2c_brand,d2c_brand,Chennai,small,physical_delivery,0,0.8396379451219828,[],29,1,1,537
-M000168,Merchant_168,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.6633219266138296,"[499, 1499, 14999]",24,1,0,535
-M000169,Merchant_169,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.3379004013014416,[],44,0,1,535
-M000170,Merchant_170,subscription_edtech,subscription_edtech,Chennai,small,digital_service,1,0.7482407412429913,"[999, 1499, 14999, 24999]",105,1,0,535
-M000171,Merchant_171,saas_tools,saas_tools,Pune,small,digital_service,1,0.8461471484109734,"[399, 2999, 9999]",87,1,0,535
-M000172,Merchant_172,saas_tools,saas_tools,Delhi,small,digital_service,1,0.8076410743277062,"[399, 19999, 49999]",99,1,0,536
-M000173,Merchant_173,social_seller,social_seller,Chennai,small,physical_delivery,0,0.3640298573256593,[],33,0,1,535
-M000174,Merchant_174,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8698870666179559,[],62,1,1,537
-M000175,Merchant_175,social_seller,social_seller,Chennai,small,physical_delivery,0,0.3638238172853948,[],24,0,1,535
-M000176,Merchant_176,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.5008526967508315,"[1499, 3999, 8999, 24999]",15,0,0,535
-M000177,Merchant_177,d2c_brand,d2c_brand,Chennai,small,physical_delivery,0,0.763679823565692,[],97,1,1,535
-M000178,Merchant_178,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.7828052187578474,[],79,1,1,535
-M000179,Merchant_179,d2c_brand,d2c_brand,Hyderabad,small,physical_delivery,0,0.7059669540199396,[],45,1,1,535
-M000180,Merchant_180,saas_tools,saas_tools,Bangalore,small,digital_service,1,0.9250366641701737,"[1499, 4999, 9999]",20,1,0,536
-M000181,Merchant_181,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.47520526834932536,"[999, 5999, 14999, 24999]",120,1,0,536
-M000182,Merchant_182,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.6486169163861013,"[3999, 5999, 24999]",16,1,0,535
-M000183,Merchant_183,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.5743584059721514,"[999, 1499, 8999]",39,0,0,536
-M000184,Merchant_184,fitness_membership,fitness_membership,Delhi,small,membership_service,1,0.45363210878287286,"[999, 1499, 3999, 24999]",77,0,0,535
-M000185,Merchant_185,saas_tools,saas_tools,Hyderabad,small,digital_service,1,0.8592333000118498,"[2999, 9999, 19999, 49999]",119,1,0,535
-M000186,Merchant_186,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.45249397558824267,"[999, 2499, 5999, 24999]",94,1,0,535
-M000187,Merchant_187,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.5865163196418441,"[999, 2499, 24999]",28,0,0,537
-M000188,Merchant_188,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.4924294815046603,"[1499, 2499, 8999, 14999]",53,0,0,536
-M000189,Merchant_189,subscription_edtech,subscription_edtech,Kolkata,small,digital_service,1,0.7262271953305591,"[2999, 9999, 14999, 24999]",105,0,0,537
-M000190,Merchant_190,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.6208794734162859,"[1499, 2999, 9999]",119,0,0,535
-M000191,Merchant_191,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8775142176976087,[],51,1,1,537
-M000192,Merchant_192,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8161978747496101,[],50,1,1,536
-M000193,Merchant_193,subscription_edtech,subscription_edtech,Hyderabad,small,digital_service,1,0.767076273913299,"[499, 999, 1499, 24999]",21,1,0,535
-M000194,Merchant_194,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.7678955508417806,[],8,1,1,537
-M000195,Merchant_195,travel_booking,travel_booking,Chennai,medium,booking_service,0,0.5397849010209644,[],92,0,0,2679
-M000196,Merchant_196,subscription_edtech,subscription_edtech,Chennai,medium,digital_service,1,0.6204176203290956,"[999, 2999, 9999]",58,1,0,2679
-M000197,Merchant_197,subscription_edtech,subscription_edtech,Pune,medium,digital_service,1,0.6762982680652562,"[999, 9999, 24999]",18,1,0,2680
-M000198,Merchant_198,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.852960710521447,[],40,0,1,2679
-M000199,Merchant_199,travel_booking,travel_booking,Kolkata,medium,booking_service,0,0.7169137216501509,[],118,0,0,2681
-M000200,Merchant_200,saas_tools,saas_tools,Mumbai,medium,digital_service,1,0.807558707185561,"[799, 1499, 9999]",99,1,0,2679
-M000201,Merchant_201,travel_booking,travel_booking,Chennai,medium,booking_service,0,0.628472880460441,[],25,1,0,2680
-M000202,Merchant_202,saas_tools,saas_tools,Bangalore,medium,digital_service,1,0.9503866315589597,"[1499, 4999, 49999]",103,1,0,2681
-M000203,Merchant_203,subscription_edtech,subscription_edtech,Bangalore,medium,digital_service,1,0.732002994348807,"[499, 999, 4999]",19,0,0,2679
-M000204,Merchant_204,fitness_membership,fitness_membership,Bangalore,medium,membership_service,1,0.5029079622302622,"[1499, 5999, 8999]",13,1,0,2680
-M000205,Merchant_205,saas_tools,saas_tools,Chennai,medium,digital_service,1,0.9220490402671973,"[4999, 9999, 19999]",67,1,0,2680
-M000206,Merchant_206,subscription_edtech,subscription_edtech,Hyderabad,medium,digital_service,1,0.6122508125703848,"[499, 14999, 24999]",43,1,0,2679
-M000207,Merchant_207,saas_tools,saas_tools,Bangalore,medium,digital_service,1,0.8859491332364996,"[2999, 9999, 49999]",20,0,0,2679
-M000208,Merchant_208,d2c_brand,d2c_brand,Chennai,medium,physical_delivery,0,0.8906411049810379,[],22,1,1,2679
-M000209,Merchant_209,d2c_brand,d2c_brand,Delhi,medium,physical_delivery,0,0.7415434506703079,[],35,1,1,2679
-M000210,Merchant_210,subscription_edtech,subscription_edtech,Chennai,medium,digital_service,1,0.7633696815258392,"[499, 1499, 24999]",117,1,0,2679
-M000211,Merchant_211,saas_tools,saas_tools,Hyderabad,medium,digital_service,1,0.8174477889230682,"[399, 4999, 9999, 19999]",23,0,0,2679
-M000212,Merchant_212,fitness_membership,fitness_membership,Kolkata,medium,membership_service,1,0.4600213379393868,"[999, 2499, 8999]",12,0,0,2679
-M000213,Merchant_213,fitness_membership,fitness_membership,Hyderabad,medium,membership_service,1,0.4923909222161086,"[3999, 8999, 24999]",6,0,0,2679
-M000214,Merchant_214,subscription_edtech,subscription_edtech,Delhi,medium,digital_service,1,0.5924126213080311,"[1499, 2999, 14999]",96,1,0,2681
-M000215,Merchant_215,fitness_membership,fitness_membership,Kolkata,medium,membership_service,1,0.6343704900309991,"[1499, 2499, 8999, 24999]",74,1,0,2679
-M000216,Merchant_216,fitness_membership,fitness_membership,Mumbai,medium,membership_service,1,0.5185427285509913,"[999, 1499, 2499, 8999]",119,0,0,2679
-M000217,Merchant_217,saas_tools,saas_tools,Delhi,medium,digital_service,1,0.9299237237845734,"[2999, 4999, 9999]",40,0,0,2680
-M000218,Merchant_218,fitness_membership,fitness_membership,Hyderabad,medium,membership_service,1,0.5977021425373258,"[2499, 14999, 24999]",73,0,0,2682
-M000219,Merchant_219,saas_tools,saas_tools,Chennai,medium,digital_service,1,0.8638601975855621,"[1499, 2999, 49999]",56,1,0,2680
-M000220,Merchant_220,travel_booking,travel_booking,Mumbai,medium,booking_service,0,0.6534979846293516,[],21,0,0,2681
-M000221,Merchant_221,fitness_membership,fitness_membership,Hyderabad,medium,membership_service,1,0.4539532890685384,"[1499, 5999, 14999, 24999]",34,0,0,2679
-M000222,Merchant_222,d2c_brand,d2c_brand,Mumbai,medium,physical_delivery,0,0.7550305051203428,[],94,1,1,2679
-M000223,Merchant_223,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.8349473094698556,[],110,1,1,2680
-M000224,Merchant_224,travel_booking,travel_booking,Chennai,medium,booking_service,0,0.6602782202486864,[],94,1,0,2679
-M000225,Merchant_225,travel_booking,travel_booking,Bangalore,medium,booking_service,0,0.5710213862054762,[],77,1,0,2679
-M000226,Merchant_226,fitness_membership,fitness_membership,Pune,medium,membership_service,1,0.5299352270327274,"[999, 2499, 3999, 5999]",116,1,0,2679
-M000227,Merchant_227,fitness_membership,fitness_membership,Chennai,medium,membership_service,1,0.6371874998871452,"[1499, 2499, 5999, 14999]",78,1,0,2680
-M000228,Merchant_228,travel_booking,travel_booking,Delhi,medium,booking_service,0,0.7025343670511073,[],115,0,0,2679
-M000229,Merchant_229,travel_booking,travel_booking,Mumbai,medium,booking_service,0,0.7156408861529122,[],91,0,0,2679
-M000230,Merchant_230,subscription_edtech,subscription_edtech,Bangalore,medium,digital_service,1,0.6761215261884613,"[999, 1499, 2999, 4999]",41,1,0,2679
-M000231,Merchant_231,subscription_edtech,subscription_edtech,Chennai,medium,digital_service,1,0.6619964776450087,"[999, 4999, 14999]",25,1,0,2681
-M000232,Merchant_232,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.8595021671361506,[],21,1,1,2680
-M000233,Merchant_233,travel_booking,travel_booking,Kolkata,medium,booking_service,0,0.6748671802366102,[],19,1,0,2681
-M000234,Merchant_234,saas_tools,saas_tools,Pune,medium,digital_service,1,0.818518164646182,"[399, 2999, 4999, 19999]",39,1,0,2679
-M000235,Merchant_235,travel_booking,travel_booking,Kolkata,medium,booking_service,0,0.5475995034695811,[],96,1,0,2680
-M000236,Merchant_236,saas_tools,saas_tools,Bangalore,medium,digital_service,1,0.9126906514458173,"[399, 1499, 4999, 19999]",64,1,0,2680
-M000237,Merchant_237,saas_tools,saas_tools,Mumbai,medium,digital_service,1,0.9172325831230301,"[399, 2999, 19999, 49999]",16,1,0,2680
-M000238,Merchant_238,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.7636652775258042,[],40,1,1,2679
-M000239,Merchant_239,saas_tools,saas_tools,Kolkata,medium,digital_service,1,0.7902838309113859,"[1499, 4999, 9999]",101,0,0,2679
-M000240,Merchant_240,travel_booking,travel_booking,Bangalore,medium,booking_service,0,0.5843091364481799,[],33,0,0,2679
-M000241,Merchant_241,fitness_membership,fitness_membership,Pune,medium,membership_service,1,0.5482514892782733,"[1499, 8999, 24999]",17,1,0,2681
-M000242,Merchant_242,subscription_edtech,subscription_edtech,Hyderabad,medium,digital_service,1,0.5935036960374831,"[499, 999, 1499, 24999]",17,0,0,2681
-M000243,Merchant_243,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.8646254634832373,[],25,1,1,2679
-M000244,Merchant_244,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.8646249219900191,[],69,1,1,2680
-M000245,Merchant_245,saas_tools,saas_tools,Bangalore,medium,digital_service,1,0.7985512154848989,"[1499, 2999, 9999]",92,1,0,2679
-M000246,Merchant_246,saas_tools,saas_tools,Hyderabad,medium,digital_service,1,0.8729359275714659,"[799, 1499, 19999, 49999]",116,1,0,2679
-M000247,Merchant_247,d2c_brand,d2c_brand,Delhi,medium,physical_delivery,0,0.735258273004426,[],26,0,1,2680
-M000248,Merchant_248,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.8980776914720965,[],104,1,1,2681
-M000249,Merchant_249,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.7897459014402501,[],51,0,1,2679
-M000250,Merchant_250,travel_booking,travel_booking,Pune,medium,booking_service,0,0.6945717917548357,[],58,1,0,2679
-M000251,Merchant_251,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.8312147758190127,[],39,1,1,2679
-M000252,Merchant_252,d2c_brand,d2c_brand,Chennai,medium,physical_delivery,0,0.8101817536980807,[],50,1,1,2680
-M000253,Merchant_253,travel_booking,travel_booking,Chennai,medium,booking_service,0,0.5253155529994583,[],11,0,0,2679
-M000254,Merchant_254,subscription_edtech,subscription_edtech,Hyderabad,medium,digital_service,1,0.6320369310685984,"[999, 1499, 24999]",46,1,0,2679
-M000255,Merchant_255,saas_tools,saas_tools,Kolkata,medium,digital_service,1,0.8341393522990214,"[799, 1499, 2999]",83,1,0,2679
-M000256,Merchant_256,subscription_edtech,subscription_edtech,Delhi,medium,digital_service,1,0.6224554277681487,"[2999, 14999, 24999]",102,1,0,2680
-M000257,Merchant_257,travel_booking,travel_booking,Hyderabad,medium,booking_service,0,0.6152183513357321,[],113,1,0,2679
-M000258,Merchant_258,subscription_edtech,subscription_edtech,Delhi,medium,digital_service,1,0.6971542650309446,"[999, 1499, 24999]",108,1,0,2680
-M000259,Merchant_259,d2c_brand,d2c_brand,Chennai,medium,physical_delivery,0,0.7845468068544125,[],26,1,1,2679
-M000260,Merchant_260,fitness_membership,fitness_membership,Delhi,medium,membership_service,1,0.5140794407194617,"[999, 1499, 2499, 14999]",112,1,0,2682
-M000261,Merchant_261,fitness_membership,fitness_membership,Mumbai,medium,membership_service,1,0.6276730906125682,"[999, 5999, 8999]",19,1,0,2680
-M000262,Merchant_262,saas_tools,saas_tools,Chennai,medium,digital_service,1,0.9504764635860533,"[399, 9999, 19999]",22,1,0,2679
-M000263,Merchant_263,travel_booking,travel_booking,Mumbai,medium,booking_service,0,0.6002529928372227,[],43,0,0,2680
-M000264,Merchant_264,d2c_brand,d2c_brand,Kolkata,medium,physical_delivery,0,0.8612381930889451,[],112,0,1,2679
-M000265,Merchant_265,d2c_brand,d2c_brand,Chennai,medium,physical_delivery,0,0.7997279093752631,[],62,0,1,2679
-M000266,Merchant_266,travel_booking,travel_booking,Bangalore,medium,booking_service,0,0.5995050049109986,[],97,1,0,2679
-M000267,Merchant_267,saas_tools,saas_tools,Mumbai,medium,digital_service,1,0.844217125282371,"[399, 799, 19999]",73,1,0,2679
-M000268,Merchant_268,fitness_membership,fitness_membership,Pune,medium,membership_service,1,0.536303800737471,"[3999, 5999, 14999]",90,1,0,2679
-M000269,Merchant_269,subscription_edtech,subscription_edtech,Bangalore,medium,digital_service,1,0.670209300037051,"[1499, 2999, 9999, 24999]",42,1,0,2679
-M000270,Merchant_270,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.7189279536498778,[],41,0,1,2680
-M000271,Merchant_271,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.7778193423044161,[],30,1,1,2680
-M000272,Merchant_272,fitness_membership,fitness_membership,Kolkata,medium,membership_service,1,0.5014844724690743,"[2499, 5999, 14999, 24999]",120,0,0,2681
-M000273,Merchant_273,d2c_brand,d2c_brand,Mumbai,medium,physical_delivery,0,0.7784969468529888,[],112,1,1,2679
-M000274,Merchant_274,travel_booking,travel_booking,Mumbai,medium,booking_service,0,0.5277083998646871,[],113,0,0,2679
-M000275,Merchant_275,fitness_membership,fitness_membership,Delhi,medium,membership_service,1,0.45530648744121494,"[1499, 5999, 14999]",59,1,0,2680
-M000276,Merchant_276,saas_tools,saas_tools,Delhi,medium,digital_service,1,0.846143213349221,"[1499, 4999, 9999, 19999]",83,1,0,2679
-M000277,Merchant_277,marketplace_retailer,marketplace_retailer,Delhi,large,physical_delivery,0,0.9193180957692564,[],67,0,1,8060
-M000278,Merchant_278,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.97,[],103,1,1,8062
-M000279,Merchant_279,marketplace_retailer,marketplace_retailer,Kolkata,large,physical_delivery,0,0.97,[],49,1,1,8060
-M000280,Merchant_280,d2c_brand,d2c_brand,Hyderabad,large,physical_delivery,0,0.7963527102724344,[],34,0,1,8062
-M000281,Merchant_281,d2c_brand,d2c_brand,Pune,large,physical_delivery,0,0.8214422860988144,[],54,1,1,8061
-M000282,Merchant_282,marketplace_retailer,marketplace_retailer,Bangalore,large,physical_delivery,0,0.8436798166357338,[],107,1,1,8063
-M000283,Merchant_283,travel_booking,travel_booking,Kolkata,large,booking_service,0,0.5768794269146817,[],40,0,0,8060
-M000284,Merchant_284,marketplace_retailer,marketplace_retailer,Mumbai,large,physical_delivery,0,0.9240914887534456,[],64,1,1,8061
-M000285,Merchant_285,d2c_brand,d2c_brand,Kolkata,large,physical_delivery,0,0.732678340029891,[],82,1,1,8061
-M000286,Merchant_286,travel_booking,travel_booking,Kolkata,large,booking_service,0,0.5280190019745552,[],72,1,0,8061
-M000287,Merchant_287,d2c_brand,d2c_brand,Chennai,large,physical_delivery,0,0.7428652805709973,[],22,1,1,8060
-M000288,Merchant_288,d2c_brand,d2c_brand,Bangalore,large,physical_delivery,0,0.7193620298609943,[],64,1,1,8060
-M000289,Merchant_289,travel_booking,travel_booking,Bangalore,large,booking_service,0,0.6817939205013498,[],118,1,0,8061
-M000290,Merchant_290,d2c_brand,d2c_brand,Kolkata,large,physical_delivery,0,0.8742818173482428,[],107,1,1,8061
-M000291,Merchant_291,d2c_brand,d2c_brand,Bangalore,large,physical_delivery,0,0.7862152715275877,[],10,1,1,8060
-M000292,Merchant_292,d2c_brand,d2c_brand,Pune,large,physical_delivery,0,0.8917415051943869,[],81,1,1,8061
-M000293,Merchant_293,marketplace_retailer,marketplace_retailer,Chennai,large,physical_delivery,0,0.8803529733393862,[],109,1,1,8062
-M000294,Merchant_294,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.97,[],110,1,1,8061
-M000295,Merchant_295,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.97,[],23,1,1,8061
-M000296,Merchant_296,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.9334896227098647,[],87,1,1,8060
-M000297,Merchant_297,d2c_brand,d2c_brand,Delhi,large,physical_delivery,0,0.7126234341407742,[],117,1,1,8060
-M000298,Merchant_298,travel_booking,travel_booking,Delhi,large,booking_service,0,0.5772094603680791,[],28,1,0,8060
-M000299,Merchant_299,travel_booking,travel_booking,Mumbai,large,booking_service,0,0.6934606081002362,[],87,0,0,8061
-M000300,Merchant_300,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.97,[],47,1,1,8060
+M000088,Merchant_88,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.7161429053599013,"[1499, 4999, 9999, 24999]",97,1,0,533
+M000089,Merchant_89,fitness_membership,fitness_membership,Delhi,small,membership_service,1,0.48629968191930484,"[1499, 8999, 14999, 24999]",11,1,0,534
+M000090,Merchant_90,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.4703343805807432,"[999, 8999, 14999, 24999]",102,0,0,535
+M000091,Merchant_91,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.6459141361173186,"[5999, 14999, 24999]",95,1,0,533
+M000092,Merchant_92,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.552844574038083,"[3999, 5999, 8999, 14999]",34,1,0,533
+M000093,Merchant_93,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.7955754548047492,[],53,1,1,533
+M000094,Merchant_94,d2c_brand,d2c_brand,Bangalore,small,physical_delivery,0,0.7732784899652495,[],90,1,1,533
+M000095,Merchant_95,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.8371486690911891,[],40,0,1,534
+M000096,Merchant_96,saas_tools,saas_tools,Kolkata,small,digital_service,1,0.8761820856600158,"[799, 2999, 4999, 19999]",29,1,0,533
+M000097,Merchant_97,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.5765835258535241,"[1499, 8999, 14999]",85,0,0,533
+M000098,Merchant_98,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.572875948108384,"[999, 3999, 5999]",66,1,0,533
+M000099,Merchant_99,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.6417760491818161,"[2499, 5999, 24999]",97,0,0,533
+M000100,Merchant_100,social_seller,social_seller,Delhi,small,physical_delivery,0,0.35801517907166186,[],11,0,1,534
+M000101,Merchant_101,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.27425826081855775,[],70,0,1,534
+M000102,Merchant_102,subscription_edtech,subscription_edtech,Chennai,small,digital_service,1,0.6845263551026246,"[4999, 9999, 24999]",33,0,0,533
+M000103,Merchant_103,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.6039467177002246,"[499, 2999, 4999, 14999]",95,0,0,534
+M000104,Merchant_104,saas_tools,saas_tools,Bangalore,small,digital_service,1,0.9596733094723071,"[4999, 9999, 49999]",67,1,0,533
+M000105,Merchant_105,d2c_brand,d2c_brand,Mumbai,small,physical_delivery,0,0.7295566745084383,[],113,1,1,533
+M000106,Merchant_106,saas_tools,saas_tools,Hyderabad,small,digital_service,1,0.9259371417354756,"[799, 2999, 49999]",76,1,0,533
+M000107,Merchant_107,subscription_edtech,subscription_edtech,Delhi,small,digital_service,1,0.7773263089848644,"[4999, 9999, 24999]",103,1,0,533
+M000108,Merchant_108,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.35765159999384416,[],9,1,1,533
+M000109,Merchant_109,saas_tools,saas_tools,Mumbai,small,digital_service,1,0.8708635923683493,"[1499, 4999, 19999, 49999]",40,0,0,534
+M000110,Merchant_110,saas_tools,saas_tools,Hyderabad,small,digital_service,1,0.8021176821992221,"[399, 799, 9999, 49999]",10,0,0,533
+M000111,Merchant_111,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.3731369472213074,[],80,1,1,533
+M000112,Merchant_112,saas_tools,saas_tools,Delhi,small,digital_service,1,0.7857999006408939,"[799, 2999, 9999, 49999]",7,1,0,534
+M000113,Merchant_113,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.45723254209893927,"[999, 1499, 24999]",98,1,0,534
+M000114,Merchant_114,d2c_brand,d2c_brand,Hyderabad,small,physical_delivery,0,0.7114463880306521,[],82,0,1,534
+M000115,Merchant_115,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.6044216798208761,"[3999, 5999, 8999, 24999]",20,1,0,533
+M000116,Merchant_116,subscription_edtech,subscription_edtech,Delhi,small,digital_service,1,0.7060023689152798,"[499, 999, 2999, 9999]",7,0,0,533
+M000117,Merchant_117,d2c_brand,d2c_brand,Hyderabad,small,physical_delivery,0,0.8960409569797364,[],76,1,1,533
+M000118,Merchant_118,social_seller,social_seller,Kolkata,small,physical_delivery,0,0.24847011031603344,[],31,0,1,534
+M000119,Merchant_119,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.4846255692845007,"[999, 1499, 8999]",58,0,0,533
+M000120,Merchant_120,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8144826299917275,[],57,0,1,534
+M000121,Merchant_121,social_seller,social_seller,Bangalore,small,physical_delivery,0,0.3002685265029436,[],72,0,1,535
+M000122,Merchant_122,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8881188819391037,[],24,1,1,534
+M000123,Merchant_123,social_seller,social_seller,Pune,small,physical_delivery,0,0.32080687814815323,[],60,1,1,533
+M000124,Merchant_124,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.5056151091562515,"[999, 2499, 5999]",52,1,0,533
+M000125,Merchant_125,saas_tools,saas_tools,Bangalore,small,digital_service,1,0.8617566218857394,"[799, 4999, 9999, 49999]",54,1,0,533
+M000126,Merchant_126,social_seller,social_seller,Delhi,small,physical_delivery,0,0.35449158662442315,[],46,0,1,533
+M000127,Merchant_127,subscription_edtech,subscription_edtech,Delhi,small,digital_service,1,0.7095896964402421,"[999, 1499, 2999, 9999]",55,1,0,534
+M000128,Merchant_128,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.6825478489213517,"[4999, 9999, 24999]",103,1,0,533
+M000129,Merchant_129,subscription_edtech,subscription_edtech,Mumbai,small,digital_service,1,0.7399740821527674,"[999, 2999, 14999]",19,1,0,533
+M000130,Merchant_130,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.46111358338137565,"[999, 1499, 2499, 3999]",13,1,0,533
+M000131,Merchant_131,saas_tools,saas_tools,Kolkata,small,digital_service,1,0.9454346849041373,"[1499, 4999, 9999, 19999]",19,1,0,535
+M000132,Merchant_132,subscription_edtech,subscription_edtech,Kolkata,small,digital_service,1,0.7790928945167275,"[1499, 4999, 14999, 24999]",92,1,0,533
+M000133,Merchant_133,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.7021455289951353,[],30,1,1,533
+M000134,Merchant_134,subscription_edtech,subscription_edtech,Chennai,small,digital_service,1,0.6131813735753068,"[1499, 9999, 24999]",29,0,0,533
+M000135,Merchant_135,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.478319177713755,"[2499, 8999, 14999, 24999]",55,1,0,535
+M000136,Merchant_136,fitness_membership,fitness_membership,Delhi,small,membership_service,1,0.4861853304461737,"[1499, 14999, 24999]",28,0,0,535
+M000137,Merchant_137,d2c_brand,d2c_brand,Hyderabad,small,physical_delivery,0,0.8172890346029592,[],62,1,1,533
+M000138,Merchant_138,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.8687176769525082,[],104,1,1,534
+M000139,Merchant_139,saas_tools,saas_tools,Pune,small,digital_service,1,0.914040651070271,"[399, 2999, 9999, 49999]",44,1,0,533
+M000140,Merchant_140,d2c_brand,d2c_brand,Chennai,small,physical_delivery,0,0.8537255178918759,[],85,1,1,533
+M000141,Merchant_141,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.63191044877427,"[999, 3999, 14999]",63,1,0,535
+M000142,Merchant_142,subscription_edtech,subscription_edtech,Delhi,small,digital_service,1,0.6597105013403082,"[9999, 14999, 24999]",6,1,0,533
+M000143,Merchant_143,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.7049646263597146,[],112,1,1,533
+M000144,Merchant_144,subscription_edtech,subscription_edtech,Kolkata,small,digital_service,1,0.6996954383115473,"[499, 2999, 24999]",66,0,0,533
+M000145,Merchant_145,saas_tools,saas_tools,Delhi,small,digital_service,1,0.9040715419316088,"[1499, 9999, 19999, 49999]",116,1,0,533
+M000146,Merchant_146,subscription_edtech,subscription_edtech,Kolkata,small,digital_service,1,0.6028208142367275,"[1499, 2999, 4999, 9999]",53,0,0,534
+M000147,Merchant_147,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.5076456490975811,"[3999, 8999, 14999, 24999]",10,0,0,533
+M000148,Merchant_148,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.6471080338989853,"[2499, 3999, 8999]",14,1,0,534
+M000149,Merchant_149,saas_tools,saas_tools,Mumbai,small,digital_service,1,0.8910923420275528,"[799, 2999, 4999, 19999]",48,1,0,534
+M000150,Merchant_150,d2c_brand,d2c_brand,Mumbai,small,physical_delivery,0,0.8350611257334969,[],93,1,1,534
+M000151,Merchant_151,saas_tools,saas_tools,Mumbai,small,digital_service,1,0.9530913096111326,"[1499, 2999, 9999, 49999]",77,1,0,533
+M000152,Merchant_152,subscription_edtech,subscription_edtech,Bangalore,small,digital_service,1,0.68292586842327,"[999, 4999, 24999]",86,1,0,533
+M000153,Merchant_153,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.4975316726721195,"[2499, 3999, 8999]",40,0,0,534
+M000154,Merchant_154,subscription_edtech,subscription_edtech,Mumbai,small,digital_service,1,0.6349650101510135,"[2999, 14999, 24999]",83,0,0,533
+M000155,Merchant_155,d2c_brand,d2c_brand,Chennai,small,physical_delivery,0,0.8614863211952564,[],120,1,1,533
+M000156,Merchant_156,saas_tools,saas_tools,Kolkata,small,digital_service,1,0.8073642556059253,"[399, 799, 4999]",90,1,0,535
+M000157,Merchant_157,subscription_edtech,subscription_edtech,Mumbai,small,digital_service,1,0.763059752057111,"[999, 1499, 14999]",13,1,0,533
+M000158,Merchant_158,subscription_edtech,subscription_edtech,Bangalore,small,digital_service,1,0.6706559833000327,"[4999, 9999, 24999]",108,0,0,534
+M000159,Merchant_159,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.5581713273889903,"[1499, 2499, 3999, 14999]",110,1,0,534
+M000160,Merchant_160,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.5681489588327533,"[999, 2499, 3999, 8999]",26,0,0,534
+M000161,Merchant_161,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.29664938665002283,[],70,0,1,533
+M000162,Merchant_162,subscription_edtech,subscription_edtech,Hyderabad,small,digital_service,1,0.6676772517168387,"[1499, 4999, 14999, 24999]",83,0,0,533
+M000163,Merchant_163,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.48703586899071355,"[999, 2499, 3999]",115,0,0,534
+M000164,Merchant_164,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.4571685502836327,"[8999, 14999, 24999]",11,1,0,533
+M000165,Merchant_165,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.7910235684823526,[],65,1,1,534
+M000166,Merchant_166,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.26232007364984533,[],79,1,1,534
+M000167,Merchant_167,d2c_brand,d2c_brand,Chennai,small,physical_delivery,0,0.8396379451219828,[],29,1,1,535
+M000168,Merchant_168,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.6633219266138296,"[499, 1499, 14999]",24,1,0,533
+M000169,Merchant_169,social_seller,social_seller,Mumbai,small,physical_delivery,0,0.3379004013014416,[],44,0,1,533
+M000170,Merchant_170,subscription_edtech,subscription_edtech,Chennai,small,digital_service,1,0.7482407412429913,"[999, 1499, 14999, 24999]",105,1,0,533
+M000171,Merchant_171,saas_tools,saas_tools,Pune,small,digital_service,1,0.8461471484109734,"[399, 2999, 9999]",87,1,0,533
+M000172,Merchant_172,saas_tools,saas_tools,Delhi,small,digital_service,1,0.8076410743277062,"[399, 19999, 49999]",99,1,0,534
+M000173,Merchant_173,social_seller,social_seller,Chennai,small,physical_delivery,0,0.3640298573256593,[],33,0,1,533
+M000174,Merchant_174,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8698870666179559,[],62,1,1,535
+M000175,Merchant_175,social_seller,social_seller,Chennai,small,physical_delivery,0,0.3638238172853948,[],24,0,1,533
+M000176,Merchant_176,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.5008526967508315,"[1499, 3999, 8999, 24999]",15,0,0,533
+M000177,Merchant_177,d2c_brand,d2c_brand,Chennai,small,physical_delivery,0,0.763679823565692,[],97,1,1,533
+M000178,Merchant_178,d2c_brand,d2c_brand,Delhi,small,physical_delivery,0,0.7828052187578474,[],79,1,1,533
+M000179,Merchant_179,d2c_brand,d2c_brand,Hyderabad,small,physical_delivery,0,0.7059669540199396,[],45,1,1,533
+M000180,Merchant_180,saas_tools,saas_tools,Bangalore,small,digital_service,1,0.9250366641701737,"[1499, 4999, 9999]",20,1,0,534
+M000181,Merchant_181,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.47520526834932536,"[999, 5999, 14999, 24999]",120,1,0,533
+M000182,Merchant_182,fitness_membership,fitness_membership,Pune,small,membership_service,1,0.6486169163861013,"[3999, 5999, 24999]",16,1,0,533
+M000183,Merchant_183,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.5743584059721514,"[999, 1499, 8999]",39,0,0,533
+M000184,Merchant_184,fitness_membership,fitness_membership,Delhi,small,membership_service,1,0.45363210878287286,"[999, 1499, 3999, 24999]",77,0,0,533
+M000185,Merchant_185,saas_tools,saas_tools,Hyderabad,small,digital_service,1,0.8592333000118498,"[2999, 9999, 19999, 49999]",119,1,0,533
+M000186,Merchant_186,fitness_membership,fitness_membership,Mumbai,small,membership_service,1,0.45249397558824267,"[999, 2499, 5999, 24999]",94,1,0,533
+M000187,Merchant_187,fitness_membership,fitness_membership,Kolkata,small,membership_service,1,0.5865163196418441,"[999, 2499, 24999]",28,0,0,534
+M000188,Merchant_188,fitness_membership,fitness_membership,Bangalore,small,membership_service,1,0.4924294815046603,"[1499, 2499, 8999, 14999]",53,0,0,534
+M000189,Merchant_189,subscription_edtech,subscription_edtech,Kolkata,small,digital_service,1,0.7262271953305591,"[2999, 9999, 14999, 24999]",105,0,0,535
+M000190,Merchant_190,subscription_edtech,subscription_edtech,Pune,small,digital_service,1,0.6208794734162859,"[1499, 2999, 9999]",119,0,0,533
+M000191,Merchant_191,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8775142176976087,[],51,1,1,535
+M000192,Merchant_192,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.8161978747496101,[],50,1,1,533
+M000193,Merchant_193,subscription_edtech,subscription_edtech,Hyderabad,small,digital_service,1,0.767076273913299,"[499, 999, 1499, 24999]",21,1,0,533
+M000194,Merchant_194,d2c_brand,d2c_brand,Kolkata,small,physical_delivery,0,0.7678955508417806,[],8,1,1,533
+M000195,Merchant_195,travel_booking,travel_booking,Chennai,medium,booking_service,0,0.5397849010209644,[],92,0,0,2669
+M000196,Merchant_196,subscription_edtech,subscription_edtech,Chennai,medium,digital_service,1,0.6204176203290956,"[999, 2999, 9999]",58,1,0,2669
+M000197,Merchant_197,subscription_edtech,subscription_edtech,Pune,medium,digital_service,1,0.6762982680652562,"[999, 9999, 24999]",18,1,0,2669
+M000198,Merchant_198,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.852960710521447,[],40,0,1,2669
+M000199,Merchant_199,travel_booking,travel_booking,Kolkata,medium,booking_service,0,0.7169137216501509,[],118,0,0,2671
+M000200,Merchant_200,saas_tools,saas_tools,Mumbai,medium,digital_service,1,0.807558707185561,"[799, 1499, 9999]",99,1,0,2669
+M000201,Merchant_201,travel_booking,travel_booking,Chennai,medium,booking_service,0,0.628472880460441,[],25,1,0,2670
+M000202,Merchant_202,saas_tools,saas_tools,Bangalore,medium,digital_service,1,0.9503866315589597,"[1499, 4999, 49999]",103,1,0,2670
+M000203,Merchant_203,subscription_edtech,subscription_edtech,Bangalore,medium,digital_service,1,0.732002994348807,"[499, 999, 4999]",19,0,0,2669
+M000204,Merchant_204,fitness_membership,fitness_membership,Bangalore,medium,membership_service,1,0.5029079622302622,"[1499, 5999, 8999]",13,1,0,2669
+M000205,Merchant_205,saas_tools,saas_tools,Chennai,medium,digital_service,1,0.9220490402671973,"[4999, 9999, 19999]",67,1,0,2670
+M000206,Merchant_206,subscription_edtech,subscription_edtech,Hyderabad,medium,digital_service,1,0.6122508125703848,"[499, 14999, 24999]",43,1,0,2669
+M000207,Merchant_207,saas_tools,saas_tools,Bangalore,medium,digital_service,1,0.8859491332364996,"[2999, 9999, 49999]",20,0,0,2669
+M000208,Merchant_208,d2c_brand,d2c_brand,Chennai,medium,physical_delivery,0,0.8906411049810379,[],22,1,1,2669
+M000209,Merchant_209,d2c_brand,d2c_brand,Delhi,medium,physical_delivery,0,0.7415434506703079,[],35,1,1,2669
+M000210,Merchant_210,subscription_edtech,subscription_edtech,Chennai,medium,digital_service,1,0.7633696815258392,"[499, 1499, 24999]",117,1,0,2669
+M000211,Merchant_211,saas_tools,saas_tools,Hyderabad,medium,digital_service,1,0.8174477889230682,"[399, 4999, 9999, 19999]",23,0,0,2669
+M000212,Merchant_212,fitness_membership,fitness_membership,Kolkata,medium,membership_service,1,0.4600213379393868,"[999, 2499, 8999]",12,0,0,2669
+M000213,Merchant_213,fitness_membership,fitness_membership,Hyderabad,medium,membership_service,1,0.4923909222161086,"[3999, 8999, 24999]",6,0,0,2669
+M000214,Merchant_214,subscription_edtech,subscription_edtech,Delhi,medium,digital_service,1,0.5924126213080311,"[1499, 2999, 14999]",96,1,0,2670
+M000215,Merchant_215,fitness_membership,fitness_membership,Kolkata,medium,membership_service,1,0.6343704900309991,"[1499, 2499, 8999, 24999]",74,1,0,2669
+M000216,Merchant_216,fitness_membership,fitness_membership,Mumbai,medium,membership_service,1,0.5185427285509913,"[999, 1499, 2499, 8999]",119,0,0,2669
+M000217,Merchant_217,saas_tools,saas_tools,Delhi,medium,digital_service,1,0.9299237237845734,"[2999, 4999, 9999]",40,0,0,2670
+M000218,Merchant_218,fitness_membership,fitness_membership,Hyderabad,medium,membership_service,1,0.5977021425373258,"[2499, 14999, 24999]",73,0,0,2669
+M000219,Merchant_219,saas_tools,saas_tools,Chennai,medium,digital_service,1,0.8638601975855621,"[1499, 2999, 49999]",56,1,0,2670
+M000220,Merchant_220,travel_booking,travel_booking,Mumbai,medium,booking_service,0,0.6534979846293516,[],21,0,0,2671
+M000221,Merchant_221,fitness_membership,fitness_membership,Hyderabad,medium,membership_service,1,0.4539532890685384,"[1499, 5999, 14999, 24999]",34,0,0,2669
+M000222,Merchant_222,d2c_brand,d2c_brand,Mumbai,medium,physical_delivery,0,0.7550305051203428,[],94,1,1,2669
+M000223,Merchant_223,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.8349473094698556,[],110,1,1,2669
+M000224,Merchant_224,travel_booking,travel_booking,Chennai,medium,booking_service,0,0.6602782202486864,[],94,1,0,2669
+M000225,Merchant_225,travel_booking,travel_booking,Bangalore,medium,booking_service,0,0.5710213862054762,[],77,1,0,2669
+M000226,Merchant_226,fitness_membership,fitness_membership,Pune,medium,membership_service,1,0.5299352270327274,"[999, 2499, 3999, 5999]",116,1,0,2669
+M000227,Merchant_227,fitness_membership,fitness_membership,Chennai,medium,membership_service,1,0.6371874998871452,"[1499, 2499, 5999, 14999]",78,1,0,2669
+M000228,Merchant_228,travel_booking,travel_booking,Delhi,medium,booking_service,0,0.7025343670511073,[],115,0,0,2669
+M000229,Merchant_229,travel_booking,travel_booking,Mumbai,medium,booking_service,0,0.7156408861529122,[],91,0,0,2669
+M000230,Merchant_230,subscription_edtech,subscription_edtech,Bangalore,medium,digital_service,1,0.6761215261884613,"[999, 1499, 2999, 4999]",41,1,0,2669
+M000231,Merchant_231,subscription_edtech,subscription_edtech,Chennai,medium,digital_service,1,0.6619964776450087,"[999, 4999, 14999]",25,1,0,2671
+M000232,Merchant_232,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.8595021671361506,[],21,1,1,2670
+M000233,Merchant_233,travel_booking,travel_booking,Kolkata,medium,booking_service,0,0.6748671802366102,[],19,1,0,2670
+M000234,Merchant_234,saas_tools,saas_tools,Pune,medium,digital_service,1,0.818518164646182,"[399, 2999, 4999, 19999]",39,1,0,2669
+M000235,Merchant_235,travel_booking,travel_booking,Kolkata,medium,booking_service,0,0.5475995034695811,[],96,1,0,2669
+M000236,Merchant_236,saas_tools,saas_tools,Bangalore,medium,digital_service,1,0.9126906514458173,"[399, 1499, 4999, 19999]",64,1,0,2670
+M000237,Merchant_237,saas_tools,saas_tools,Mumbai,medium,digital_service,1,0.9172325831230301,"[399, 2999, 19999, 49999]",16,1,0,2669
+M000238,Merchant_238,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.7636652775258042,[],40,1,1,2669
+M000239,Merchant_239,saas_tools,saas_tools,Kolkata,medium,digital_service,1,0.7902838309113859,"[1499, 4999, 9999]",101,0,0,2669
+M000240,Merchant_240,travel_booking,travel_booking,Bangalore,medium,booking_service,0,0.5843091364481799,[],33,0,0,2669
+M000241,Merchant_241,fitness_membership,fitness_membership,Pune,medium,membership_service,1,0.5482514892782733,"[1499, 8999, 24999]",17,1,0,2671
+M000242,Merchant_242,subscription_edtech,subscription_edtech,Hyderabad,medium,digital_service,1,0.5935036960374831,"[499, 999, 1499, 24999]",17,0,0,2670
+M000243,Merchant_243,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.8646254634832373,[],25,1,1,2669
+M000244,Merchant_244,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.8646249219900191,[],69,1,1,2670
+M000245,Merchant_245,saas_tools,saas_tools,Bangalore,medium,digital_service,1,0.7985512154848989,"[1499, 2999, 9999]",92,1,0,2669
+M000246,Merchant_246,saas_tools,saas_tools,Hyderabad,medium,digital_service,1,0.8729359275714659,"[799, 1499, 19999, 49999]",116,1,0,2669
+M000247,Merchant_247,d2c_brand,d2c_brand,Delhi,medium,physical_delivery,0,0.735258273004426,[],26,0,1,2670
+M000248,Merchant_248,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.8980776914720965,[],104,1,1,2670
+M000249,Merchant_249,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.7897459014402501,[],51,0,1,2669
+M000250,Merchant_250,travel_booking,travel_booking,Pune,medium,booking_service,0,0.6945717917548357,[],58,1,0,2669
+M000251,Merchant_251,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.8312147758190127,[],39,1,1,2669
+M000252,Merchant_252,d2c_brand,d2c_brand,Chennai,medium,physical_delivery,0,0.8101817536980807,[],50,1,1,2670
+M000253,Merchant_253,travel_booking,travel_booking,Chennai,medium,booking_service,0,0.5253155529994583,[],11,0,0,2669
+M000254,Merchant_254,subscription_edtech,subscription_edtech,Hyderabad,medium,digital_service,1,0.6320369310685984,"[999, 1499, 24999]",46,1,0,2669
+M000255,Merchant_255,saas_tools,saas_tools,Kolkata,medium,digital_service,1,0.8341393522990214,"[799, 1499, 2999]",83,1,0,2669
+M000256,Merchant_256,subscription_edtech,subscription_edtech,Delhi,medium,digital_service,1,0.6224554277681487,"[2999, 14999, 24999]",102,1,0,2670
+M000257,Merchant_257,travel_booking,travel_booking,Hyderabad,medium,booking_service,0,0.6152183513357321,[],113,1,0,2669
+M000258,Merchant_258,subscription_edtech,subscription_edtech,Delhi,medium,digital_service,1,0.6971542650309446,"[999, 1499, 24999]",108,1,0,2669
+M000259,Merchant_259,d2c_brand,d2c_brand,Chennai,medium,physical_delivery,0,0.7845468068544125,[],26,1,1,2669
+M000260,Merchant_260,fitness_membership,fitness_membership,Delhi,medium,membership_service,1,0.5140794407194617,"[999, 1499, 2499, 14999]",112,1,0,2672
+M000261,Merchant_261,fitness_membership,fitness_membership,Mumbai,medium,membership_service,1,0.6276730906125682,"[999, 5999, 8999]",19,1,0,2670
+M000262,Merchant_262,saas_tools,saas_tools,Chennai,medium,digital_service,1,0.9504764635860533,"[399, 9999, 19999]",22,1,0,2669
+M000263,Merchant_263,travel_booking,travel_booking,Mumbai,medium,booking_service,0,0.6002529928372227,[],43,0,0,2670
+M000264,Merchant_264,d2c_brand,d2c_brand,Kolkata,medium,physical_delivery,0,0.8612381930889451,[],112,0,1,2669
+M000265,Merchant_265,d2c_brand,d2c_brand,Chennai,medium,physical_delivery,0,0.7997279093752631,[],62,0,1,2669
+M000266,Merchant_266,travel_booking,travel_booking,Bangalore,medium,booking_service,0,0.5995050049109986,[],97,1,0,2669
+M000267,Merchant_267,saas_tools,saas_tools,Mumbai,medium,digital_service,1,0.844217125282371,"[399, 799, 19999]",73,1,0,2669
+M000268,Merchant_268,fitness_membership,fitness_membership,Pune,medium,membership_service,1,0.536303800737471,"[3999, 5999, 14999]",90,1,0,2669
+M000269,Merchant_269,subscription_edtech,subscription_edtech,Bangalore,medium,digital_service,1,0.670209300037051,"[1499, 2999, 9999, 24999]",42,1,0,2669
+M000270,Merchant_270,d2c_brand,d2c_brand,Bangalore,medium,physical_delivery,0,0.7189279536498778,[],41,0,1,2669
+M000271,Merchant_271,d2c_brand,d2c_brand,Pune,medium,physical_delivery,0,0.7778193423044161,[],30,1,1,2670
+M000272,Merchant_272,fitness_membership,fitness_membership,Kolkata,medium,membership_service,1,0.5014844724690743,"[2499, 5999, 14999, 24999]",120,0,0,2670
+M000273,Merchant_273,d2c_brand,d2c_brand,Mumbai,medium,physical_delivery,0,0.7784969468529888,[],112,1,1,2669
+M000274,Merchant_274,travel_booking,travel_booking,Mumbai,medium,booking_service,0,0.5277083998646871,[],113,0,0,2669
+M000275,Merchant_275,fitness_membership,fitness_membership,Delhi,medium,membership_service,1,0.45530648744121494,"[1499, 5999, 14999]",59,1,0,2670
+M000276,Merchant_276,saas_tools,saas_tools,Delhi,medium,digital_service,1,0.846143213349221,"[1499, 4999, 9999, 19999]",83,1,0,2669
+M000277,Merchant_277,marketplace_retailer,marketplace_retailer,Delhi,large,physical_delivery,0,0.9193180957692564,[],67,0,1,8029
+M000278,Merchant_278,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.97,[],103,1,1,8031
+M000279,Merchant_279,marketplace_retailer,marketplace_retailer,Kolkata,large,physical_delivery,0,0.97,[],49,1,1,8029
+M000280,Merchant_280,d2c_brand,d2c_brand,Hyderabad,large,physical_delivery,0,0.7963527102724344,[],34,0,1,8030
+M000281,Merchant_281,d2c_brand,d2c_brand,Pune,large,physical_delivery,0,0.8214422860988144,[],54,1,1,8030
+M000282,Merchant_282,marketplace_retailer,marketplace_retailer,Bangalore,large,physical_delivery,0,0.8436798166357338,[],107,1,1,8032
+M000283,Merchant_283,travel_booking,travel_booking,Kolkata,large,booking_service,0,0.5768794269146817,[],40,0,0,8029
+M000284,Merchant_284,marketplace_retailer,marketplace_retailer,Mumbai,large,physical_delivery,0,0.9240914887534456,[],64,1,1,8030
+M000285,Merchant_285,d2c_brand,d2c_brand,Kolkata,large,physical_delivery,0,0.732678340029891,[],82,1,1,8030
+M000286,Merchant_286,travel_booking,travel_booking,Kolkata,large,booking_service,0,0.5280190019745552,[],72,1,0,8030
+M000287,Merchant_287,d2c_brand,d2c_brand,Chennai,large,physical_delivery,0,0.7428652805709973,[],22,1,1,8029
+M000288,Merchant_288,d2c_brand,d2c_brand,Bangalore,large,physical_delivery,0,0.7193620298609943,[],64,1,1,8029
+M000289,Merchant_289,travel_booking,travel_booking,Bangalore,large,booking_service,0,0.6817939205013498,[],118,1,0,8029
+M000290,Merchant_290,d2c_brand,d2c_brand,Kolkata,large,physical_delivery,0,0.8742818173482428,[],107,1,1,8030
+M000291,Merchant_291,d2c_brand,d2c_brand,Bangalore,large,physical_delivery,0,0.7862152715275877,[],10,1,1,8029
+M000292,Merchant_292,d2c_brand,d2c_brand,Pune,large,physical_delivery,0,0.8917415051943869,[],81,1,1,8030
+M000293,Merchant_293,marketplace_retailer,marketplace_retailer,Chennai,large,physical_delivery,0,0.8803529733393862,[],109,1,1,8031
+M000294,Merchant_294,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.97,[],110,1,1,8030
+M000295,Merchant_295,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.97,[],23,1,1,8029
+M000296,Merchant_296,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.9334896227098647,[],87,1,1,8029
+M000297,Merchant_297,d2c_brand,d2c_brand,Delhi,large,physical_delivery,0,0.7126234341407742,[],117,1,1,8029
+M000298,Merchant_298,travel_booking,travel_booking,Delhi,large,booking_service,0,0.5772094603680791,[],28,1,0,8029
+M000299,Merchant_299,travel_booking,travel_booking,Mumbai,large,booking_service,0,0.6934606081002362,[],87,0,0,8030
+M000300,Merchant_300,marketplace_retailer,marketplace_retailer,Pune,large,physical_delivery,0,0.97,[],47,1,1,8029

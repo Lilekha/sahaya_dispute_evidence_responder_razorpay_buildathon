@@ -1,26 +1,26 @@
 # SaHaYa Dataset Profile v6
 
 Dispute Distribution:
-  Card dispute rate : 0.630%
-  Contest rate      : 66.9%
-  Win rate          : 47.1%
-  Win | dec present : 72.1%
-  Win | dec missing : 22.1%
+  Card dispute rate : 0.632%
+  Contest rate      : 66.2%
+  Win rate          : 47.0%
+  Win | dec present : 73.7%
+  Win | dec missing : 22.3%
 
 Reason codes:
-  RECURRING_BILLING_DISPUTE: 374 (19.2%)
-  MERCHANDISE_NOT_AS_DESCRIBED: 343 (17.6%)
-  UNAUTHORIZED_TRANSACTION: 341 (17.5%)
-  CREDIT_NOT_PROCESSED: 284 (14.5%)
-  SERVICE_NOT_RENDERED: 254 (13.0%)
-  MERCHANDISE_NOT_RECEIVED: 251 (12.9%)
-  DUPLICATE_TRANSACTION: 106 (5.4%)
+  RECURRING_BILLING_DISPUTE: 407 (20.8%)
+  MERCHANDISE_NOT_AS_DESCRIBED: 340 (17.4%)
+  UNAUTHORIZED_TRANSACTION: 339 (17.4%)
+  CREDIT_NOT_PROCESSED: 264 (13.5%)
+  MERCHANDISE_NOT_RECEIVED: 247 (12.6%)
+  SERVICE_NOT_RENDERED: 243 (12.4%)
+  DUPLICATE_TRANSACTION: 113 (5.8%)
 
-Amounts: non-sub 5/9 ending = 100.0%
+Amounts: non-sub ending distribution = 9:40.0%, 0:40.1%, 5:19.9%
 
 Doc maturity: min=0.200 max=0.970
 
 Evidence completeness:
-  All present : 42.1%
-  One missing : 30.7%
-  Two+ missing: 27.2%
+  All present : 40.2%
+  One missing : 31.4%
+  Two+ missing: 28.3%

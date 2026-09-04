@@ -4,6 +4,7 @@ import { inr, pct } from '../lib/format'
 import StatRow from '../components/StatRow'
 import ReasonValueChart from '../components/charts/ReasonValueChart'
 import DeadlineChart from '../components/charts/DeadlineChart'
+import RecommendationDonut from '../components/charts/RecommendationDonut'
 
 export default function Overview() {
   const { selectedMerchant, merchantDisputes } = useData()
@@ -22,23 +23,35 @@ export default function Overview() {
   const contestShare = m.n_disputes ? (m.n_contest / m.n_disputes) * 100 : 0
   const acceptShare = 100 - contestShare
 
+  const heroLine1 =
+    m.n_contest > 0
+      ? `${m.n_contest} of ${m.n_disputes} worth contesting`
+      : `None of these ${m.n_disputes} are worth contesting`
+  const heroLine2 =
+    m.n_contest > 0
+      ? `Accepting the other ${m.n_accept} avoids ${inr(wastedFees)} in filing fees on cases the evidence cannot win.`
+      : `Contesting them would cost ${inr(wastedFees)} more than accepting.`
+
   return (
     <div className="flex flex-col gap-6">
-      <p className="text-[20px] leading-relaxed text-ink">
-        SaHaYa recommends contesting <span className="num font-semibold">{m.n_contest}</span> of{' '}
-        <span className="font-semibold">{m.name}</span>&rsquo;s{' '}
-        <span className="num font-semibold">{m.n_disputes}</span> disputes, and accepting the
-        other <span className="num font-semibold">{m.n_accept}</span>.
-        <br />
-        Contesting everything would waste{' '}
-        <span className="num font-semibold">{inr(wastedFees)}</span> in fees on cases the
-        evidence cannot win.
-      </p>
+      <div className="flex items-stretch border border-line bg-surface">
+        <div className="flex w-[180px] shrink-0 items-center justify-center border-r border-line p-4">
+          <RecommendationDonut contestCount={m.n_contest} acceptCount={m.n_accept} />
+        </div>
+        <div className="flex flex-1 flex-col justify-center gap-1 p-4">
+          <p className="num text-[20px] font-semibold text-ink">{heroLine1}</p>
+          <p className="text-sm text-slate">{heroLine2}</p>
+        </div>
+      </div>
 
       <StatRow
         items={[
-          { label: 'Value at risk', value: inr(m.at_risk_value) },
-          { label: 'Projected recovery', value: inr(m.projected_recovery) },
+          { label: 'Total disputed', value: inr(m.total_disputed) },
+          {
+            label: 'Projected recovery',
+            value: inr(m.projected_recovery),
+            note: m.projected_recovery === 0 ? 'No disputes meet the threshold to contest' : null,
+          },
           { label: 'Disputes to review', value: String(m.n_disputes) },
           { label: 'Evidence completeness', value: pct(m.mean_packet_completeness) },
         ]}

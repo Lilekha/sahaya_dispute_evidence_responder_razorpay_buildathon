@@ -1,47 +1,14 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { Check, ChevronDown } from 'lucide-react'
+import { matchPath, useLocation, useNavigate } from 'react-router-dom'
 import { useData } from '../context/DataContext'
-import { avatarColor } from '../lib/colors'
 import { pct } from '../lib/format'
-
-const STOPWORDS = new Set(['by', 'of', 'the', 'and', 'for'])
-
-function getMonogram(name) {
-  const words = (name ?? '')
-    .split(/\s+/)
-    .filter((w) => /[a-zA-Z]/.test(w))
-    .filter((w) => !STOPWORDS.has(w.toLowerCase()))
-
-  if (words.length >= 2) {
-    return (words[0][0] + words[1][0]).toUpperCase()
-  }
-
-  const word = words[0] ?? ''
-  if (!word) return '—'
-
-  const first = word[0]
-  const internalCap = word.slice(1).match(/[A-Z]/)
-  const second = internalCap ? internalCap[0] : (word[1] ?? first)
-  return (first + second).toUpperCase()
-}
+import MerchantAvatar from './MerchantAvatar'
 
 function humanizeArchetype(archetype) {
   if (!archetype) return ''
   const spaced = archetype.replace(/_/g, ' ')
   return spaced.charAt(0).toUpperCase() + spaced.slice(1)
-}
-
-function MerchantAvatar({ merchant, size = 'md' }) {
-  const dims = size === 'sm' ? 'h-7 w-7 text-[11px]' : 'h-8 w-8 text-xs'
-  return (
-    <span
-      aria-hidden="true"
-      className={`flex shrink-0 items-center justify-center rounded-full font-semibold text-white ${dims}`}
-      style={{ backgroundColor: avatarColor(merchant.merchant_id) }}
-    >
-      {getMonogram(merchant.name)}
-    </span>
-  )
 }
 
 function MaturityBar({ value }) {
@@ -59,6 +26,8 @@ function MaturityBar({ value }) {
 export default function MerchantSwitcher() {
   const { data, selectedMerchant, setSelectedMerchant } = useData()
   const [open, setOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
   const containerRef = useRef(null)
   const triggerRef = useRef(null)
   const optionRefs = useRef([])
@@ -128,6 +97,9 @@ export default function MerchantSwitcher() {
     setSelectedMerchant(merchant)
     setOpen(false)
     triggerRef.current?.focus()
+    if (matchPath('/disputes/:id', location.pathname)) {
+      navigate('/disputes')
+    }
   }
 
   return (
@@ -142,15 +114,15 @@ export default function MerchantSwitcher() {
         onKeyDown={handleTriggerKeyDown}
         className="flex max-w-[240px] items-center gap-2 border border-line px-3 py-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dodger"
       >
-        <MerchantAvatar merchant={selectedMerchant} />
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-sm font-medium text-ink">
+          <span className="block truncate text-right text-sm font-medium text-ink">
             {selectedMerchant.name}
           </span>
-          <span className="block truncate text-[11px] text-slate">
+          <span className="block truncate text-right text-[11px] text-slate">
             {humanizeArchetype(selectedMerchant.archetype)}
           </span>
         </span>
+        <MerchantAvatar key={selectedMerchant.merchant_id} merchant={selectedMerchant} size={32} />
         <ChevronDown
           aria-hidden="true"
           className={`h-4 w-4 shrink-0 text-slate transition-transform ${open ? 'rotate-180' : ''}`}
@@ -181,7 +153,7 @@ export default function MerchantSwitcher() {
                 }`}
               >
                 <span className="flex items-center gap-3">
-                  <MerchantAvatar merchant={merchant} size="sm" />
+                  <MerchantAvatar merchant={merchant} size={28} />
                   <span className="min-w-0 flex-1 truncate text-sm font-medium text-ink">
                     {merchant.name}
                   </span>

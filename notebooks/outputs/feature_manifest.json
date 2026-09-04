@@ -1,8 +1,8 @@
 {
   "target": "won  (1 = merchant won, 0 = merchant lost)",
   "population": "contested disputes only \u2014 accepted disputes have no bank verdict",
-  "n_rows": 1307,
-  "positive_rate": 0.4713,
+  "n_rows": 1293,
+  "positive_rate": 0.4702,
   "recommended_primary_model": "LogisticRegression (scaled, L2)",
   "recommended_benchmark_model": "RandomForestClassifier",
   "class_balancing_required": false,
@@ -70,7 +70,7 @@
   },
   "baselines_INR": {
     "always_accept": 0.0,
-    "always_contest": 1801387.0,
-    "perfect": 2356345.0
+    "always_contest": 1728847.0,
+    "perfect": 2276747.0
   }
 }

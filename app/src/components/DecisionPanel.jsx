@@ -6,6 +6,8 @@ import { colors } from '../lib/theme'
 export default function DecisionPanel({ dispute }) {
   const { p_win, breakeven, dispute_amount, contest_fee, expected_value, recommendation } = dispute
   const isContest = recommendation === 'CONTEST'
+  const winOutcome = dispute_amount - contest_fee
+  const loseOutcome = -contest_fee
 
   return (
     <div className="border border-line bg-surface p-4">
@@ -24,15 +26,25 @@ export default function DecisionPanel({ dispute }) {
         </div>
       </div>
 
-      <div className="num mt-6 flex flex-wrap items-baseline gap-2 border-y border-line py-4 text-base text-ink">
-        <span>{p_win.toFixed(3)}</span>
-        <span className="text-slate">×</span>
-        <span>{inr(dispute_amount)}</span>
-        <span className="text-slate">−</span>
-        <span>{inr(contest_fee)}</span>
-        <span className="text-slate">=</span>
-        <span className="font-semibold">{inr(expected_value)}</span>
-        <span className="text-sm font-normal text-slate">expected value</span>
+      <div className="num mt-6 flex flex-col gap-2 border-y border-line py-4 text-sm text-ink">
+        <div className="flex items-center justify-between gap-4">
+          <span>
+            If we contest and <span className="font-medium">win</span>{' '}
+            <span className="text-slate">({pct(p_win)} likely)</span>
+          </span>
+          <span className="text-contest">+{inr(winOutcome)}</span>
+        </div>
+        <div className="flex items-center justify-between gap-4">
+          <span>
+            If we contest and <span className="font-medium">lose</span>{' '}
+            <span className="text-slate">({pct(1 - p_win)} likely)</span>
+          </span>
+          <span className="text-gap">{inr(loseOutcome)}</span>
+        </div>
+        <div className="mt-1 flex items-center justify-between gap-4 border-t border-line pt-2 font-semibold">
+          <span className="text-sm font-normal text-slate">Expected value</span>
+          <span>{inr(expected_value)}</span>
+        </div>
       </div>
 
       <div className="mt-4 flex items-center gap-2">
@@ -41,9 +53,14 @@ export default function DecisionPanel({ dispute }) {
       </div>
 
       <p className="mt-3 text-sm text-ink">
-        {isContest
-          ? `Worth contesting — the expected recovery exceeds the ${inr(contest_fee)} cost of filing.`
-          : `Not worth contesting — the ${inr(contest_fee)} filing cost exceeds what we expect to recover.`}
+        We need a {pct(breakeven)} chance of winning to justify the {inr(contest_fee)} filing
+        cost. We estimate {pct(p_win)}, so contesting would{' '}
+        {isContest ? 'recover money on average.' : 'lose money on average.'}
+      </p>
+
+      <p className="mt-3 text-[11px] text-slate">
+        Expected value is the average across many similar disputes, not what you receive on this
+        one.
       </p>
     </div>
   )

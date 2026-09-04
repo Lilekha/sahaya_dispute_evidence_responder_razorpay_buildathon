@@ -13,7 +13,11 @@ export default function EvidenceChecklist({ dispute }) {
   return (
     <div className="border border-line bg-surface p-4">
       <h2 className="text-base font-semibold text-ink">Evidence checklist</h2>
-      <p className="num mt-1 text-sm text-slate">
+      <p className="mt-1 text-sm text-slate">
+        The documents the card network requires for this claim type, and whether this merchant
+        has them on file.
+      </p>
+      <p className="num mt-2 text-sm text-slate">
         {dispute.evidence_submitted} of {dispute.evidence_required} required documents available.
       </p>
       <ul className="mt-4 divide-y divide-line">

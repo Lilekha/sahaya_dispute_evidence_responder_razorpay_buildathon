@@ -129,11 +129,12 @@ export default function Disputes() {
         </div>
       ) : (
         <div className="overflow-x-auto border border-line bg-surface">
-          <table className="w-full min-w-[860px] text-[13px]">
+          <table className="w-full min-w-[980px] text-[13px]">
             <thead>
               <tr className="border-b border-line text-left text-[11px] text-slate">
                 <th className="px-3 py-2 font-medium">Dispute ID</th>
-                <th className="px-3 py-2 font-medium">Reason</th>
+                <th className="w-32 px-3 py-2 font-medium">Reason</th>
+                <th className="px-3 py-2 font-medium">Customer</th>
                 <th className="px-3 py-2 text-right font-medium">Amount</th>
                 <th className="px-3 py-2 font-medium">Win probability</th>
                 <th className="px-3 py-2 text-right font-medium">Break-even</th>
@@ -158,7 +159,12 @@ export default function Disputes() {
                       />
                       <span className="num relative text-ink">{d.dispute_id}</span>
                     </td>
-                    <td className="px-3 align-middle text-ink">{humanReason(d.reason_code)}</td>
+                    <td className="w-32 truncate px-3 align-middle text-ink">
+                      {humanReason(d.reason_code)}
+                    </td>
+                    <td className="px-3 align-middle text-ink">
+                      {d.customer_name ? `${d.customer_name} · ${d.customer_city}` : '—'}
+                    </td>
                     <td className="num px-3 text-right align-middle text-ink">
                       {inr(d.dispute_amount)}
                     </td>

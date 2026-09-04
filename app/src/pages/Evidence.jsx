@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { Check } from 'lucide-react'
 import { useData } from '../context/DataContext'
 import { humanReason, sentenceCase } from '../lib/format'
 import { colors } from '../lib/theme'
@@ -106,9 +107,9 @@ function RequirementMatrix({ allDisputes }) {
               {matrix[rc].map((required, i) => (
                 <td key={i} className="border border-line p-2 text-center">
                   {required && (
-                    <span
-                      className="mx-auto block h-3 w-3 rounded bg-ink"
-                      role="img"
+                    <Check
+                      className="mx-auto h-4 w-4"
+                      style={{ color: colors.contest }}
                       aria-label="Required"
                     />
                   )}

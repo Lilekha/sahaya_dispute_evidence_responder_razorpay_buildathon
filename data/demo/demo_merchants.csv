@@ -1,8 +1,8 @@
 merchant_id,merchant_name,merchant_archetype,fulfillment_type,subscription_supported,business_size,documentation_maturity,demo_priority,business_description,annual_transactions,dispute_count
-M000001,Loops & Knots by Ananya,social_seller,physical_delivery,0,small,0.2,7,"Hand-crocheted bags sold through Instagram DMs, ~60 orders/month, no written return policy.",720,3
-M000002,SoleCraft,d2c_brand,physical_delivery,0,medium,0.8394736058118728,4,"Direct-to-consumer footwear brand with ergonomic designs, clear return policy, full tracking.",3800,21
-M000003,Gyan IAS Study Circle,subscription_edtech,digital_service,1,medium,0.7322279403980707,3,Online civil-services test-prep platform with tiered subscription plans.,3800,20
-M000004,CodePilot,saas_tools,digital_service,1,small,0.944552322654166,5,Developer productivity and code-optimisation SaaS with monthly/annual tiers.,860,5
-M000005,FitForge,fitness_membership,membership_service,1,small,0.6016175480170748,6,"Neighbourhood gym chain with monthly, quarterly, and annual memberships.",860,4
-M000006,TripWell,travel_booking,booking_service,0,medium,0.5287607531574458,2,"Online travel agency for domestic tourism; booking-only, no subscription.",3800,12
-M000007,SwitchCart,marketplace_retailer,physical_delivery,0,large,0.9689524311815635,1,"Multi-category marketplace: electronics, fashion, home goods; robust SLA tracking.",8500,29
+M000001,Loops & Knots by Ananya,social_seller,physical_delivery,0,small,0.2,7,"Hand-crocheted bags sold through Instagram DMs, ~60 orders/month, no written return policy.",1800,13
+M000002,SoleCraft,d2c_brand,physical_delivery,0,medium,0.8394736058118728,4,"Direct-to-consumer footwear brand with ergonomic designs, clear return policy, full tracking.",3800,13
+M000003,Gyan IAS Study Circle,subscription_edtech,digital_service,1,medium,0.7322279403980707,3,Online civil-services test-prep platform with tiered subscription plans.,3800,17
+M000004,CodePilot,saas_tools,digital_service,1,small,0.944552322654166,5,Developer productivity and code-optimisation SaaS with monthly/annual tiers.,860,7
+M000005,FitForge,fitness_membership,membership_service,1,small,0.6016175480170748,6,"Neighbourhood gym chain with monthly, quarterly, and annual memberships.",1600,13
+M000006,TripWell,travel_booking,booking_service,0,medium,0.5287607531574458,2,"Online travel agency for domestic tourism; booking-only, no subscription.",3800,17
+M000007,SwitchCart,marketplace_retailer,physical_delivery,0,large,0.9689524311815635,1,"Multi-category marketplace: electronics, fashion, home goods; robust SLA tracking.",8500,22

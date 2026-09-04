@@ -6,16 +6,16 @@ Contest decision computed from predicted probability + cost matrix -- never lear
 
 File structure:
   data/core/merchants.csv          300 rows
-  data/core/customers.csv          178,573 rows
+  data/core/customers.csv          178,562 rows
   data/core/transactions.csv.gz    500,000 rows (GZIP)
   data/core/disputes.csv           1,953 rows
   data/core/evidence.csv           11,718 rows (6 x disputes)
   data/demo/demo_merchants.csv     7 rows
 
 Key metrics:
-  Card dispute rate : 0.630%
-  Contest rate      : 66.9%
-  Win rate          : 47.1%
+  Card dispute rate : 0.632%
+  Contest rate      : 66.2%
+  Win rate          : 47.0%
 
 7 Archetypes:
   d2c_brand            physical_delivery    sub=0  doc_base=0.80
