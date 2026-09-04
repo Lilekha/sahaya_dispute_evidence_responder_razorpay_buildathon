@@ -993,33 +993,26 @@ def compute_outcomes(disputes_df: pd.DataFrame,
         decisive_adj = 0.0
         
         if rc == "UNAUTHORIZED_TRANSACTION":
-            if otp == 1: decisive_adj += 2.0
-            else:        decisive_adj += -1.4
+            if otp == 1: decisive_adj = 2.4
+            else:        decisive_adj = -1.4
         elif decisive_types:
-            n_decisive = len(decisive_types)
+            adj_sum = 0.0
             for d_type in decisive_types:
                 ev_info = ev_map.get(disp_id, {}).get(d_type)
-                if ev_info is None:
-                    adj = 0.0
-                elif ev_info[0] == 0:
-                    adj = -2.1
+                if ev_info is None or ev_info[0] == 0:
+                    adj_sum += -2.1
                 else:
                     q = ev_info[1]
-                    adj = 1.9 if q >= 0.80 else 1.1
+                    adj_sum += 2.2 if q >= 0.80 else 1.3
 
-                if rc == "MERCHANDISE_NOT_AS_DESCRIBED":
-                    adj *= 0.5
-                decisive_adj += adj
-            decisive_adj /= n_decisive
-            
-        # Amplify decisive_adj to guarantee the 72-86% PRESENT win rate gap
-        decisive_adj *= 2.0
+            if rc == "MERCHANDISE_NOT_AS_DESCRIBED":
+                adj_sum *= 0.5
+            decisive_adj = adj_sum
 
         # ── COMPLETENESS_TERM ────────────────────────────────────────────────
         completeness_adj = 0.0
         decisive_set = set(decisive_types)
         
-        # We can look up required docs directly from REQUIRED_MATRIX
         slots = EVIDENCE_SLOTS[fulfil]
         req_pat = REQUIRED_MATRIX[(rc, fulfil)]
         for slot_idx in range(6):
@@ -1044,34 +1037,40 @@ def compute_outcomes(disputes_df: pd.DataFrame,
         raw_sum = decisive_adj + completeness_adj + quality_adj + amount_adj + customer_adj
         contested.at[i, "_raw_adj"] = raw_sum
         
-    # Solve for offset per reason code to EXACTLY match target base rates + 0.04 shift
-    noise_vals = pd.Series(rng_out.normal(0, 0.5, len(contested)), index=contested.index)
+    target_wr = {
+        "UNAUTHORIZED_TRANSACTION":     0.20,
+        "MERCHANDISE_NOT_RECEIVED":     0.62,
+        "SERVICE_NOT_RENDERED":         0.48,
+        "MERCHANDISE_NOT_AS_DESCRIBED": 0.38,
+        "RECURRING_BILLING_DISPUTE":    0.42,
+        "CREDIT_NOT_PROCESSED":         0.45,
+        "DUPLICATE_TRANSACTION":        0.70,
+    }
+
+    noise_vals = pd.Series(rng_out.normal(0, 0.85, len(contested)), index=contested.index)
+    contested["_final_logit"] = 0.0
     
     for rc_val, grp in contested.groupby("reason_code"):
-        # Shift target_p up by 0.04 to hit the overall 45-52% band 
-        # (while remaining within ±0.06 of base rate for each RC)
-        target_p = sigmoid(np.array([BASE_LOGIT[rc_val]]))[0] + 0.04
         idx = grp.index
-        
+        if rc_val == "UNAUTHORIZED_TRANSACTION":
+            tgt = target_wr[rc_val] - 0.01
+        else:
+            tgt = target_wr[rc_val] + 0.02
         low, high = -10.0, 10.0
-        best_offset = 0.0
-        for _ in range(15):
+        best_c = BASE_LOGIT[rc_val]
+        for _ in range(25):
             mid = (low + high) / 2.0
-            logits = BASE_LOGIT[rc_val] + contested.loc[idx, "_raw_adj"] + mid + noise_vals[idx]
-            p_mean = sigmoid(logits).mean()
-            if p_mean > target_p:
+            p_mean = sigmoid(mid + contested.loc[idx, "_raw_adj"] + noise_vals.loc[idx]).mean()
+            if p_mean > tgt:
                 high = mid
             else:
                 low = mid
-            best_offset = mid
-            
-        contested.loc[idx, "_centered_adj"] = contested.loc[idx, "_raw_adj"] + best_offset
+            best_c = mid
+        contested.loc[idx, "_final_logit"] = best_c + contested.loc[idx, "_raw_adj"] + noise_vals.loc[idx]
     
     # Compute final outcome
     for i, (idx, c) in enumerate(contested.iterrows()):
-        rc = c["reason_code"]
-        centered_adj = c["_centered_adj"]
-        logit = BASE_LOGIT[rc] + centered_adj + noise_vals[idx]
+        logit = c["_final_logit"]
 
         win_prob = sigmoid(np.array([logit]))[0]
         won = bool(rng_out.random() < win_prob)
@@ -1249,20 +1248,22 @@ def run_semantic_audit(merchants_df: pd.DataFrame,
     contested = disputes_df[disputes_df["merchant_action"] == "contested"].copy()
     
     # We map decisive_any directly using ev_map logic or by iterating
-    # To be fast and avoid deprecation warnings:
     decisive_any_dict = {}
-    for rc_val, grp in contested.groupby("reason_code"):
-        d_types = DECISIVE_EVIDENCE.get(rc_val, [])
-        if not d_types:
-            for d_id in grp["dispute_id"]:
-                decisive_any_dict[d_id] = False
+    ev_map_audit = (evidence_df.groupby(["dispute_id", "evidence_type"])["available"].first().to_dict())
+    
+    for row in contested.itertuples():
+        d_id = row.dispute_id
+        rc_val = row.reason_code
+        otp_val = getattr(row, "_otp_passed", 0)
+        
+        if rc_val == "UNAUTHORIZED_TRANSACTION":
+            decisive_any_dict[d_id] = (otp_val == 1)
         else:
-            rel_ev = evidence_df[(evidence_df["dispute_id"].isin(grp["dispute_id"])) & 
-                                 (evidence_df["evidence_type"].isin(d_types))]
-            # dispute has ANY of the decisive types available
-            pres_ids = rel_ev[rel_ev["available"] == 1]["dispute_id"].unique()
-            for d_id in grp["dispute_id"]:
-                decisive_any_dict[d_id] = (d_id in pres_ids)
+            d_types = DECISIVE_EVIDENCE.get(rc_val, [])
+            if not d_types:
+                decisive_any_dict[d_id] = False
+            else:
+                decisive_any_dict[d_id] = all(ev_map_audit.get((d_id, dt), 0) == 1 for dt in d_types)
                 
     contested["decisive_any"] = contested["dispute_id"].map(decisive_any_dict)
 
@@ -1458,10 +1459,22 @@ def run_baseline_model(merchants_df: pd.DataFrame,
                 .reset_index())
     ev_agg["miss_count"] = ev_agg["req_count"] - ev_agg["pres_count"]
 
-    # Decisive-present flag (any decisive doc available)
-    dec_flag = evidence_df.groupby("dispute_id").apply(
-        lambda g: int((g["required"] == 1) & (g["available"] == 1)).any()
-    ).rename("decisive_present").reset_index()
+    # Decisive-present flag
+    ev_map_bm = (evidence_df.groupby(["dispute_id", "evidence_type"])["available"].first().to_dict())
+    dec_dict = {}
+    for row in contested.itertuples():
+        d_id = row.dispute_id
+        rc_val = row.reason_code
+        otp_val = getattr(row, "_otp_passed", 0)
+        if rc_val == "UNAUTHORIZED_TRANSACTION":
+            dec_dict[d_id] = int(otp_val == 1)
+        else:
+            d_types = DECISIVE_EVIDENCE.get(rc_val, [])
+            if not d_types:
+                dec_dict[d_id] = 0
+            else:
+                dec_dict[d_id] = int(all(ev_map_bm.get((d_id, dt), 0) == 1 for dt in d_types))
+    dec_flag = pd.DataFrame({"dispute_id": list(dec_dict.keys()), "decisive_present": list(dec_dict.values())})
 
     # Merge dispute with merchant info and evidence
     merch_cols = merchants_df[["merchant_id","merchant_archetype","fulfillment_type",
@@ -1769,21 +1782,31 @@ def main():
     internal_cols = [c for c in disputes_df.columns if c.startswith("_")]
     disputes_save = disputes_df.drop(columns=internal_cols)
 
+    def safe_to_csv(df_to_save, filepath, **kwargs):
+        import time
+        for attempt in range(5):
+            try:
+                df_to_save.to_csv(filepath, **kwargs)
+                return
+            except PermissionError:
+                time.sleep(1.0)
+        df_to_save.to_csv(filepath, **kwargs)
+
     # ── Save ──────────────────────────────────────────────────────────────────
     print("\nSaving files …")
-    merchants_df.to_csv(CORE_DIR / "merchants.csv", index=False)
+    safe_to_csv(merchants_df, CORE_DIR / "merchants.csv", index=False)
     print(f"  merchants.csv          {len(merchants_df):,} rows")
 
-    customers_df.to_csv(CORE_DIR / "customers.csv", index=False)
+    safe_to_csv(customers_df, CORE_DIR / "customers.csv", index=False)
     print(f"  customers.csv          {len(customers_df):,} rows")
 
-    transactions_df.to_csv(CORE_DIR / "transactions.csv.gz", index=False, compression="gzip")
+    safe_to_csv(transactions_df, CORE_DIR / "transactions.csv.gz", index=False, compression="gzip")
     print(f"  transactions.csv.gz    {len(transactions_df):,} rows")
 
-    disputes_save.to_csv(CORE_DIR / "disputes.csv", index=False)
+    safe_to_csv(disputes_save, CORE_DIR / "disputes.csv", index=False)
     print(f"  disputes.csv           {len(disputes_save):,} rows")
 
-    evidence_df.to_csv(CORE_DIR / "evidence.csv", index=False)
+    safe_to_csv(evidence_df, CORE_DIR / "evidence.csv", index=False)
     print(f"  evidence.csv           {len(evidence_df):,} rows")
 
     save_demo_merchants(merchants_df)
