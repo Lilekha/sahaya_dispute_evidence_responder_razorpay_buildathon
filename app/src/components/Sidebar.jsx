@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FileText, HelpCircle, LayoutDashboard, ShieldCheck } from 'lucide-react'
 
@@ -9,15 +10,36 @@ const navItems = [
 ]
 
 export default function Sidebar() {
+  const [logoError, setLogoError] = useState(false)
+
   return (
     <aside className="fixed inset-y-0 left-0 flex w-16 flex-col bg-prussian shadow-[2px_0_4px_rgba(0,0,0,0.15)] md:w-60">
       <div className="flex items-center justify-center px-2 py-5 md:block md:px-4">
         <span className="flex h-8 w-8 items-center justify-center bg-white/10 text-sm font-semibold text-white md:hidden">
           S
         </span>
-        <div className="hidden text-[20px] font-semibold text-white md:block">SaHaYa</div>
-        <div className="hidden text-[11px] font-normal text-white/60 md:block">
-          Saboot Hai Yahan!
+        <div className="hidden md:block">
+          {logoError ? (
+            <>
+              <div className="text-[20px] font-semibold text-white">SaHaYa</div>
+              <div className="text-[11px] font-normal text-white/60">Saboot Hai Yahan!</div>
+            </>
+          ) : (
+            <div className="grid grid-cols-[32px_1fr] items-center gap-x-2.5">
+              <img
+                src="/logo.png"
+                alt=""
+                className="col-start-1 row-start-1 h-8 w-8 object-contain"
+                onError={() => setLogoError(true)}
+              />
+              <div className="col-start-2 row-start-1 text-[20px] font-semibold leading-none text-white">
+                SaHaYa
+              </div>
+              <div className="col-start-2 row-start-2 text-[11px] font-normal text-white/60">
+                Saboot Hai Yahan!
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <nav className="flex-1 px-2">

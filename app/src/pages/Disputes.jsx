@@ -137,7 +137,6 @@ export default function Disputes() {
                 <th className="px-3 py-2 font-medium">Customer</th>
                 <th className="px-3 py-2 text-right font-medium">Amount</th>
                 <th className="px-3 py-2 font-medium">Win probability</th>
-                <th className="px-3 py-2 text-right font-medium">Break-even</th>
                 <th className="px-3 py-2 font-medium">Recommendation</th>
                 <th className="px-3 py-2 text-right font-medium">Deadline</th>
               </tr>
@@ -175,13 +174,6 @@ export default function Disputes() {
                         </span>
                         <ProbabilityBar value={d.p_win} />
                       </span>
-                    </td>
-                    <td
-                      className={`num px-3 text-right align-middle ${
-                        isMarginal ? 'text-ink' : 'text-slate'
-                      }`}
-                    >
-                      {pct(d.breakeven)}
                     </td>
                     <td className="px-3 align-middle">
                       <RecommendationBadge recommendation={d.recommendation} />

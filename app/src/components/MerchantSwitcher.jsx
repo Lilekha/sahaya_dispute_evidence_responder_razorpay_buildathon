@@ -134,7 +134,7 @@ export default function MerchantSwitcher() {
           id={listboxId}
           role="listbox"
           aria-label="Select merchant"
-          className="absolute left-0 top-full z-20 mt-2 max-h-[420px] w-80 divide-y divide-line overflow-y-auto border border-line bg-surface"
+          className="absolute right-0 top-full z-20 mt-2 max-h-[70vh] w-[280px] divide-y divide-line overflow-y-auto border border-line bg-surface"
         >
           {sortedMerchants.map((merchant, index) => {
             const isSelected = merchant.merchant_id === selectedMerchant.merchant_id

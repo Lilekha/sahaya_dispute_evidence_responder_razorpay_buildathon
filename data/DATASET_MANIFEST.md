@@ -14,8 +14,8 @@ File structure:
 
 Key metrics:
   Card dispute rate : 0.632%
-  Contest rate      : 66.2%
-  Win rate          : 47.0%
+  Contest rate      : 65.4%
+  Win rate          : 46.6%
 
 7 Archetypes:
   d2c_brand            physical_delivery    sub=0  doc_base=0.80

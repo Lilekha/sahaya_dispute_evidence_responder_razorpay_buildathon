@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useData } from '../context/DataContext'
 import { inr, daysLeft, humanReason, formatDate } from '../lib/format'
 import DecisionPanel from '../components/DecisionPanel'
@@ -17,6 +17,7 @@ export default function DisputeDetail() {
   const { id } = useParams()
   const { data, metrics } = useData()
   const [submission, setSubmission] = useState(null)
+  const navigate = useNavigate()
 
   const dispute = data?.disputes.find((d) => d.dispute_id === id)
 
@@ -49,6 +50,13 @@ export default function DisputeDetail() {
     <div className="grid grid-cols-1 gap-6 md:grid-cols-5">
       <div className="flex flex-col gap-6 md:col-span-3">
         <div>
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="mb-4 text-[13px] font-medium text-slate hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dodger"
+          >
+            ← Back to disputes
+          </button>
           <div className="flex items-baseline gap-3">
             <h1 className="text-[20px] font-semibold text-ink">{dispute.dispute_id}</h1>
             <span className="text-sm text-slate">{humanReason(dispute.reason_code)}</span>

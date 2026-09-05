@@ -105,11 +105,16 @@ function RequirementMatrix({ allDisputes }) {
                 {humanReason(rc)}
               </th>
               {matrix[rc].map((required, i) => (
-                <td key={i} className="border border-line p-2 text-center">
+                <td
+                  key={i}
+                  className="border border-line p-2 text-center"
+                  style={required ? { backgroundColor: colors.canvas } : undefined}
+                >
                   {required && (
                     <Check
                       className="mx-auto h-4 w-4"
-                      style={{ color: colors.contest }}
+                      style={{ color: colors.ink }}
+                      strokeWidth={2.5}
                       aria-label="Required"
                     />
                   )}

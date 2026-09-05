@@ -2,6 +2,19 @@ import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recha
 import { pct, sentenceCase } from '../../lib/format'
 import { colors } from '../../lib/theme'
 
+function GapTooltip({ active, payload }) {
+  if (!active || !payload?.length) return null
+  const { label, count, total, share } = payload[0].payload
+  return (
+    <div className="border border-line bg-surface px-2.5 py-1.5 text-[12px]">
+      <div className="font-medium text-ink">{label}</div>
+      <div className="text-slate">
+        {count} of {total} disputes · {pct(share, 0)}
+      </div>
+    </div>
+  )
+}
+
 export default function EvidenceGapChart({ disputes }) {
   const evidenceTypes = disputes[0]
     ? disputes[0].evidence_slots.map((s) => ({ type: s.evidence_type, label: sentenceCase(s.label) }))
@@ -12,7 +25,12 @@ export default function EvidenceGapChart({ disputes }) {
       const gapCount = disputes.filter(
         (d) => d.evidence_slots.find((s) => s.evidence_type === type)?.status === 'GAP',
       ).length
-      return { label, share: disputes.length ? gapCount / disputes.length : 0 }
+      return {
+        label,
+        count: gapCount,
+        total: disputes.length,
+        share: disputes.length ? gapCount / disputes.length : 0,
+      }
     })
     .sort((a, b) => b.share - a.share)
 
@@ -35,10 +53,7 @@ export default function EvidenceGapChart({ disputes }) {
           axisLine={{ stroke: colors.line }}
           tickLine={false}
         />
-        <Tooltip
-          formatter={(value) => pct(value, 0)}
-          contentStyle={{ borderRadius: 4, borderColor: colors.line, fontSize: 12 }}
-        />
+        <Tooltip content={<GapTooltip />} cursor={{ fill: colors.canvas }} />
         <Bar
           dataKey="share"
           fill={colors.gap}

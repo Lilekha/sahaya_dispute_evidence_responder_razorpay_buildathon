@@ -51,6 +51,19 @@ export function formatDate(dateTimeStr) {
   return dateFormatter.format(new Date(year, month - 1, day))
 }
 
+const dateFormatterLong = new Intl.DateTimeFormat('en-IN', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+})
+
+export function formatDateLong(dateTimeStr) {
+  if (!dateTimeStr) return '—'
+  const [datePart] = dateTimeStr.split(' ')
+  const [year, month, day] = datePart.split('-').map(Number)
+  return dateFormatterLong.format(new Date(year, month - 1, day))
+}
+
 export function sentenceCase(str) {
   if (!str) return ''
   return str.charAt(0).toUpperCase() + str.slice(1)

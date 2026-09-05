@@ -2,10 +2,10 @@
 
 Dispute Distribution:
   Card dispute rate : 0.632%
-  Contest rate      : 66.2%
-  Win rate          : 47.0%
-  Win | dec present : 73.7%
-  Win | dec missing : 22.3%
+  Contest rate      : 65.4%
+  Win rate          : 46.6%
+  Win | dec present : 73.9%
+  Win | dec missing : 20.6%
 
 Reason codes:
   RECURRING_BILLING_DISPUTE: 407 (20.8%)
@@ -21,6 +21,6 @@ Amounts: non-sub ending distribution = 9:40.0%, 0:40.1%, 5:19.9%
 Doc maturity: min=0.200 max=0.970
 
 Evidence completeness:
-  All present : 40.2%
-  One missing : 31.4%
-  Two+ missing: 28.3%
+  All present : 42.9%
+  One missing : 31.2%
+  Two+ missing: 26.0%

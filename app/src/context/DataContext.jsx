@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { formatDateLong } from '../lib/format'
 
 const DataContext = createContext(null)
 
@@ -47,6 +48,15 @@ export function DataProvider({ children }) {
 
   const metrics = data?.model_metrics ?? null
 
+  const dataAsOf = useMemo(() => {
+    if (!data?.disputes?.length) return null
+    const latest = data.disputes.reduce(
+      (max, d) => (d.dispute_created_at > max ? d.dispute_created_at : max),
+      data.disputes[0].dispute_created_at,
+    )
+    return formatDateLong(latest)
+  }, [data])
+
   const value = {
     data,
     loading,
@@ -55,6 +65,7 @@ export function DataProvider({ children }) {
     setSelectedMerchant,
     merchantDisputes,
     metrics,
+    dataAsOf,
   }
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>

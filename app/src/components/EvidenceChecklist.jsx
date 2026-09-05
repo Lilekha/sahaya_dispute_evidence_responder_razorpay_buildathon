@@ -53,6 +53,10 @@ export default function EvidenceChecklist({ dispute }) {
           </li>
         ))}
       </ul>
+      <p className="mt-3 text-[12px] text-slate">
+        Bar length shows document quality — how complete and legible the record is, not just
+        whether it exists.
+      </p>
     </div>
   )
 }
