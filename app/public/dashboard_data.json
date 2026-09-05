@@ -2,7 +2,7 @@
   "meta": {
     "project": "Chargeback Evidence Responder",
     "track": "Razorpay AI Buildathon \u2014 Track 02, AI Risk Manager",
-    "generated_at": "2026-09-05T08:55:55.634717",
+    "generated_at": "2026-09-05T11:06:12.061167",
     "scope_note": "Card disputes only (Visa/Mastercard/RuPay). UPI chargebacks are auto-resolved by NPCI via settlement reconciliation, so no evidence is submitted and there is no merchant decision to support.",
     "data_note": "Synthetic dataset calibrated to published industry benchmarks. No India-specific chargeback statistics are publicly available.",
     "compliance_note": "Defense-only. Evidence is never fabricated; gaps are disclosed. All recommendations are advisory and require human sign-off."
@@ -15,6 +15,10 @@
       "test_brier": 0.1602,
       "precision": 0.6045,
       "recall": 0.6639,
+      "f1": 0.6328,
+      "precision_at_half": 0.7164,
+      "recall_at_half": 0.7869,
+      "f1_at_half": 0.75,
       "n_train": 1034,
       "n_test": 259
     },
@@ -32,6 +36,44 @@
       "model": 616094.0,
       "perfect_foresight": 663279.0
     },
+    "economics_by_segment": [
+      {
+        "segment": "Q1 (smallest)",
+        "median_amount": 797.0,
+        "median_breakeven": 1.0,
+        "n_disputes": 66,
+        "always_accept": 0.0,
+        "always_contest": -26863.0,
+        "model": 61.0
+      },
+      {
+        "segment": "Q2",
+        "median_amount": 1499.0,
+        "median_breakeven": 0.4781,
+        "n_disputes": 74,
+        "always_accept": 0.0,
+        "always_contest": -1130.0,
+        "model": 11661.0
+      },
+      {
+        "segment": "Q3",
+        "median_amount": 3624.5,
+        "median_breakeven": 0.2207,
+        "n_disputes": 54,
+        "always_accept": 0.0,
+        "always_contest": 47711.0,
+        "model": 59076.0
+      },
+      {
+        "segment": "Q4 (largest)",
+        "median_amount": 14900.0,
+        "median_breakeven": 0.0609,
+        "n_disputes": 65,
+        "always_accept": 0.0,
+        "always_contest": 534450.0,
+        "model": 545296.0
+      }
+    ],
     "uplift_vs_always_contest": 61926.0,
     "false_positive_cost": 40881.0,
     "false_negative_cost": 6304.0

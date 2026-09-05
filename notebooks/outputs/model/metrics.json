@@ -7,6 +7,10 @@
   "test_brier": 0.1602,
   "precision_at_economic_threshold": 0.6045,
   "recall_at_economic_threshold": 0.6639,
+  "f1_at_economic_threshold": 0.6328,
+  "precision_at_half_threshold": 0.7164,
+  "recall_at_half_threshold": 0.7869,
+  "f1_at_half_threshold": 0.75,
   "net_recovery_INR": {
     "always_accept": 0.0,
     "always_contest": 554168.0,
@@ -28,5 +32,43 @@
     "archetype_saas_tools": 0.009,
     "merchant_age_months": 0.0081,
     "fulfillment_type_membership_service": 0.0077
-  }
+  },
+  "economics_by_segment": [
+    {
+      "segment": "Q1 (smallest)",
+      "median_amount": 797.0,
+      "median_breakeven": 1.0,
+      "n_disputes": 66,
+      "always_accept": 0.0,
+      "always_contest": -26863.0,
+      "model": 61.0
+    },
+    {
+      "segment": "Q2",
+      "median_amount": 1499.0,
+      "median_breakeven": 0.4781,
+      "n_disputes": 74,
+      "always_accept": 0.0,
+      "always_contest": -1130.0,
+      "model": 11661.0
+    },
+    {
+      "segment": "Q3",
+      "median_amount": 3624.5,
+      "median_breakeven": 0.2207,
+      "n_disputes": 54,
+      "always_accept": 0.0,
+      "always_contest": 47711.0,
+      "model": 59076.0
+    },
+    {
+      "segment": "Q4 (largest)",
+      "median_amount": 14900.0,
+      "median_breakeven": 0.0609,
+      "n_disputes": 65,
+      "always_accept": 0.0,
+      "always_contest": 534450.0,
+      "model": 545296.0
+    }
+  ]
 }

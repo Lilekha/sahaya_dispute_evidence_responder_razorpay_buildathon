@@ -1,14 +1,16 @@
 import { useData } from '../context/DataContext'
 import { inr } from '../lib/format'
 import EconomicsChart from '../components/charts/EconomicsChart'
+import SegmentEconomicsChart from '../components/charts/SegmentEconomicsChart'
 import InfoTooltip from '../components/InfoTooltip'
+import { colors } from '../lib/theme'
 
 export default function Methodology() {
   const { metrics } = useData()
 
   if (!metrics) return null
 
-  const { win_prediction, evidence_selection, economics, uplift_vs_always_contest } = metrics
+  const { win_prediction, evidence_selection, economics, economics_by_segment } = metrics
 
   return (
     <div className="flex flex-col gap-6">
@@ -46,16 +48,34 @@ export default function Methodology() {
               <dd className="num text-ink">{win_prediction.test_roc_auc.toFixed(3)}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-slate">Precision</dt>
+              <dt className="text-slate">Precision (economic threshold)</dt>
               <dd className="num text-ink">{win_prediction.precision.toFixed(3)}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-slate">Recall</dt>
+              <dt className="text-slate">Recall (economic threshold)</dt>
               <dd className="num text-ink">{win_prediction.recall.toFixed(3)}</dd>
             </div>
           </dl>
+
+          <div className="mt-3 border-t border-line pt-3">
+            <p className="text-[11px] text-slate">At the standard 0.5 threshold</p>
+            <dl className="mt-2 flex flex-col gap-2 text-sm">
+              <div className="flex justify-between">
+                <dt className="text-slate">Precision</dt>
+                <dd className="num text-ink">{win_prediction.precision_at_half.toFixed(3)}</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="text-slate">Recall</dt>
+                <dd className="num text-ink">{win_prediction.recall_at_half.toFixed(3)}</dd>
+              </div>
+            </dl>
+          </div>
+
           <p className="mt-3 text-sm italic text-slate">
-            Predicts a bank&rsquo;s judgement, which is genuinely uncertain. Reported as measured.
+            SaHaYa contests some low-probability, high-value disputes because the payoff
+            justifies the risk — which is why economic-threshold precision reads lower than
+            standard precision. Both describe the same model; they answer different questions.
+            Treat the exact decimal as approximate — the test set is a few hundred disputes.
           </p>
         </div>
       </div>
@@ -67,17 +87,44 @@ export default function Methodology() {
 
       <div className="border border-line bg-surface p-4">
         <h2 className="text-base font-semibold text-ink">The money view</h2>
-        <div className="mt-4">
-          <EconomicsChart economics={economics} />
+        <div className="mt-4 flex flex-col gap-6 md:flex-row">
+          <div className="md:w-[45%]">
+            <EconomicsChart economics={economics} />
+          </div>
+          <div className="md:flex-1">
+            <h3 className="text-sm font-semibold text-ink">Where the judgement actually pays off</h3>
+            <p className="mt-0.5 text-[13px] text-slate">
+              Same two strategies, broken down by dispute size.
+            </p>
+            <div className="mt-3">
+              <SegmentEconomicsChart segments={economics_by_segment} />
+            </div>
+            <div className="mt-2 flex items-center gap-4 text-[13px] text-slate">
+              <span className="flex items-center gap-1.5">
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: colors.slate }}
+                  aria-hidden="true"
+                />
+                Always contest
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: colors.dodger }}
+                  aria-hidden="true"
+                />
+                SaHaYa
+              </span>
+            </div>
+          </div>
         </div>
-        <p className="mt-3 text-sm text-ink">
-          SaHaYa recovers <span className="num font-semibold">{inr(uplift_vs_always_contest)}</span>{' '}
-          more than contesting every dispute.
-        </p>
-        <p className="mt-2 text-sm text-slate">
-          Contest fees are small relative to most dispute amounts, so contesting everything is a
-          strong baseline. SaHaYa&rsquo;s advantage concentrates in small-value disputes, where the
-          filing fee approaches the amount at stake and contesting destroys money.
+        <p className="mt-6 text-sm text-ink">
+          Overall, SaHaYa and blind contesting perform similarly — most disputes are worth
+          fighting regardless, so blindly contesting everything is already a strong baseline. The
+          difference concentrates in small disputes: fighting a ₹500 claim to recover ₹500 when
+          the filing fee is ₹450 is mathematically hopeless, and blind contesting loses money on
+          every one of those cases. SaHaYa correctly declines them.
         </p>
       </div>
 
