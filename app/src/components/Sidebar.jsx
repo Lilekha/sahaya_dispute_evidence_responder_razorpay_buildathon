@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { FileText, HelpCircle, LayoutDashboard, ShieldCheck } from 'lucide-react'
+import { BookOpen, FileText, HelpCircle, LayoutDashboard, ShieldCheck } from 'lucide-react'
 
 const navItems = [
   { to: '/', label: 'Overview', icon: LayoutDashboard },
   { to: '/disputes', label: 'Disputes', icon: FileText },
   { to: '/evidence', label: 'Evidence', icon: ShieldCheck },
   { to: '/methodology', label: 'How it works', icon: HelpCircle },
+  { to: '/about', label: 'About SaHaYa', icon: BookOpen },
 ]
 
 export default function Sidebar() {

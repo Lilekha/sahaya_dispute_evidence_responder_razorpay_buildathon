@@ -8,6 +8,7 @@ import Disputes from './pages/Disputes'
 import DisputeDetail from './pages/DisputeDetail'
 import Evidence from './pages/Evidence'
 import Methodology from './pages/Methodology'
+import About from './pages/About'
 
 export default function App() {
   return (
@@ -57,6 +58,7 @@ function AppShell() {
             <Route path="/disputes/:id" element={<DisputeDetail />} />
             <Route path="/evidence" element={<Evidence />} />
             <Route path="/methodology" element={<Methodology />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </main>
         <footer className="border-t border-line px-6 py-4 text-[11px] text-slate">

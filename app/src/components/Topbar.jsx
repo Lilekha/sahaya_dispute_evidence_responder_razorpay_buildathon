@@ -41,6 +41,12 @@ function usePageHeader() {
       description: 'What the system measures, and how honestly it performs.',
     }
   }
+  if (pathname === '/about') {
+    return {
+      title: 'About SaHaYa',
+      description: "Why this exists, and what it's built on.",
+    }
+  }
   return null
 }
 
