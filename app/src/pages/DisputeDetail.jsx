@@ -109,19 +109,23 @@ export default function DisputeDetail() {
           <dl className="mt-4 flex flex-col gap-2 text-sm">
             <div className="flex justify-between gap-4">
               <dt className="text-slate">Customer</dt>
-              <dd className="text-ink">{dispute.customer_name ?? '—'}</dd>
+              <dd className={dispute.customer_name ? 'text-ink' : 'text-slate'}>
+                {dispute.customer_name ?? 'Guest checkout'}
+              </dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-slate">City</dt>
-              <dd className="text-ink">{dispute.customer_city ?? '—'}</dd>
+              <dd className={dispute.customer_city ? 'text-ink' : 'text-slate'}>
+                {dispute.customer_city ?? 'Guest checkout'}
+              </dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-slate">Prior orders</dt>
-              <dd className="num text-ink">{dispute.customer_previous_orders ?? '—'}</dd>
+              <dd className="num text-ink">{dispute.customer_prior_orders ?? '—'}</dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-slate">Prior disputes</dt>
-              <dd className="num text-ink">{dispute.customer_previous_disputes ?? '—'}</dd>
+              <dd className="num text-ink">{dispute.customer_prior_disputes ?? '—'}</dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-slate">Transaction ID</dt>

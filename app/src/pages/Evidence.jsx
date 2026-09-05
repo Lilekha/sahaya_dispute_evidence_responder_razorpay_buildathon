@@ -5,6 +5,7 @@ import { useData } from '../context/DataContext'
 import { humanReason, sentenceCase } from '../lib/format'
 import { colors } from '../lib/theme'
 import EvidenceGapChart from '../components/charts/EvidenceGapChart'
+import InfoTooltip from '../components/InfoTooltip'
 
 const COMPLETENESS_BUCKET_LABELS = ['0–20%', '20–40%', '40–60%', '60–80%', '80–100%']
 
@@ -135,16 +136,22 @@ export default function Evidence() {
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="border border-line bg-surface p-4">
-          <h2 className="text-base font-semibold text-ink">
-            Which documents are missing most often
-          </h2>
+          <div className="flex items-center gap-1.5">
+            <h2 className="text-base font-semibold text-ink">
+              Which documents are missing most often
+            </h2>
+            <InfoTooltip text="How often each required document is unavailable when a dispute arrives. Frequent gaps point to record-keeping to fix." />
+          </div>
           <div className="mt-4">
             <EvidenceGapChart disputes={merchantDisputes} />
           </div>
         </div>
 
         <div className="border border-line bg-surface p-4">
-          <h2 className="text-base font-semibold text-ink">Packet completeness distribution</h2>
+          <div className="flex items-center gap-1.5">
+            <h2 className="text-base font-semibold text-ink">Packet completeness distribution</h2>
+            <InfoTooltip text="How many of the required documents are on file per dispute. Higher is better — incomplete packets are much harder to win." />
+          </div>
           <div className="mt-4">
             <CompletenessHistogram disputes={merchantDisputes} />
           </div>
@@ -152,7 +159,10 @@ export default function Evidence() {
       </div>
 
       <div className="border border-line bg-surface p-4">
-        <h2 className="text-base font-semibold text-ink">Requirement matrix</h2>
+        <div className="flex items-center gap-1.5">
+          <h2 className="text-base font-semibold text-ink">Requirement matrix</h2>
+          <InfoTooltip text="The documents each card network requires for each claim type. A published rule, not our estimate." />
+        </div>
         <p className="mt-1 text-sm text-slate">
           A filled cell means the card network requires this document for that claim type — a
           published rule, not a guess.

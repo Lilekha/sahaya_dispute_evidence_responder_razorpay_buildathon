@@ -25,18 +25,16 @@ export default function Sidebar() {
               <div className="text-[11px] font-normal text-white/60">Saboot Hai Yahan!</div>
             </>
           ) : (
-            <div className="grid grid-cols-[32px_1fr] items-center gap-x-2.5">
+            <div className="flex items-center gap-2.5">
               <img
                 src="/logo.png"
                 alt=""
-                className="col-start-1 row-start-1 h-8 w-8 object-contain"
+                className="h-11 w-11 shrink-0 object-contain"
                 onError={() => setLogoError(true)}
               />
-              <div className="col-start-2 row-start-1 text-[20px] font-semibold leading-none text-white">
-                SaHaYa
-              </div>
-              <div className="col-start-2 row-start-2 text-[11px] font-normal text-white/60">
-                Saboot Hai Yahan!
+              <div>
+                <div className="text-[20px] font-semibold text-white">SaHaYa</div>
+                <div className="text-[11px] font-normal text-white/60">Saboot Hai Yahan!</div>
               </div>
             </div>
           )}

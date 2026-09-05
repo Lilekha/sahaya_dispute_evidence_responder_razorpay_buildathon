@@ -161,8 +161,14 @@ export default function Disputes() {
                     <td className="w-32 truncate px-3 align-middle text-ink">
                       {humanReason(d.reason_code)}
                     </td>
-                    <td className="px-3 align-middle text-ink">
-                      {d.customer_name ? `${d.customer_name} · ${d.customer_city}` : '—'}
+                    <td className="px-3 align-middle">
+                      {d.customer_name && d.customer_city ? (
+                        <span className="text-ink">
+                          {d.customer_name} · {d.customer_city}
+                        </span>
+                      ) : (
+                        <span className="text-slate">Guest checkout</span>
+                      )}
                     </td>
                     <td className="num px-3 text-right align-middle text-ink">
                       {inr(d.dispute_amount)}

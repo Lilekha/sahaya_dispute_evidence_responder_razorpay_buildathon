@@ -1,6 +1,7 @@
 import { useData } from '../context/DataContext'
 import { inr } from '../lib/format'
 import EconomicsChart from '../components/charts/EconomicsChart'
+import InfoTooltip from '../components/InfoTooltip'
 
 export default function Methodology() {
   const { metrics } = useData()
@@ -35,7 +36,10 @@ export default function Methodology() {
         </div>
 
         <div className="border border-line bg-surface p-4">
-          <h2 className="text-base font-semibold text-ink">Win prediction</h2>
+          <div className="flex items-center gap-1.5">
+            <h2 className="text-base font-semibold text-ink">Win prediction</h2>
+            <InfoTooltip text="A calibrated Random Forest trained on past contested disputes. ROC-AUC measures how well it separates wins from losses (0.5 is random, 1.0 is perfect). Precision is the share of disputes it recommends contesting that actually win. Recall is the share of winnable disputes it catches." />
+          </div>
           <dl className="mt-4 flex flex-col gap-2 text-sm">
             <div className="flex justify-between">
               <dt className="text-slate">ROC-AUC</dt>
@@ -55,6 +59,11 @@ export default function Methodology() {
           </p>
         </div>
       </div>
+
+      <p className="text-[12px] text-slate">
+        These model metrics are shown for evaluation purposes. A live merchant-facing product
+        would not display them.
+      </p>
 
       <div className="border border-line bg-surface p-4">
         <h2 className="text-base font-semibold text-ink">The money view</h2>
