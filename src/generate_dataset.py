@@ -1,342 +1,425 @@
-import os
-import random
+"""Clean, reproducible generator for the final Razorpay Buildathon dataset.
+
+This is a consolidated reconstruction of the generation pipeline. It intentionally
+combines the useful logic from the earlier generation/repair iterations into one
+canonical script rather than reproducing every historical patch file.
+"""
+
+import json
+import hashlib
+from datetime import timedelta
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
-def generate_dataset():
-    np.random.seed(42)
-    random.seed(42)
+from config import (
+    SEED, CORE_DIR, DEMO_DIR, N_MERCHANTS, N_TRANSACTIONS, N_DISPUTES,
+    START_DATE, END_DATE, CITIES, ARCHETYPE_COUNTS, FULFILLMENT, SUBSCRIPTION,
+    DOCUMENTATION_MATURITY, SIZE_COUNTS, SIZE_TXN_RANGES, REASON_CODES,
+    REASON_DESCRIPTIONS, REASON_WEIGHTS, EVIDENCE_SLOTS, REQUIRED,
+    DEMO_MERCHANTS,
+)
 
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    data_dir = os.path.join(base_dir, 'data')
-    core_dir = os.path.join(data_dir, 'core')
-    demo_dir = os.path.join(data_dir, 'demo')
+FIRST_NAMES = ["Ananya", "Arjun", "Aarav", "Ishita", "Riya", "Neha", "Rahul", "Karan",
+               "Meera", "Priya", "Vikram", "Nikhil", "Aditi", "Rohan", "Sana", "Kabir"]
+LAST_NAMES = ["Sharma", "Patel", "Iyer", "Gupta", "Singh", "Nair", "Mehta", "Reddy",
+              "Das", "Kapoor", "Joshi", "Bose"]
 
-    # Load existing datasets
-    merchants_df = pd.read_csv(os.path.join(core_dir, 'merchants.csv'))
-    customers_df = pd.read_csv(os.path.join(core_dir, 'customers.csv'))
-    transactions_df = pd.read_csv(os.path.join(core_dir, 'transactions.csv'))
+PRICE_MENUS = {
+    "subscription_edtech": [499, 999, 2999, 9999, 14999],
+    "saas_tools": [399, 799, 1499, 2999, 9999, 19999],
+    "fitness_membership": [999, 1499, 3999, 5999, 14999],
+}
+AMOUNT_RANGES = {
+    "social_seller": (350, 6000),
+    "d2c_brand": (500, 15000),
+    "marketplace_retailer": (200, 40000),
+    "travel_booking": (1500, 90000),
+}
 
-    print("--- STEP 1: Updating Merchants ---")
-    demo_updates = {
-        'M000001': {'merchant_name': 'Wonderloon Bags', 'merchant_archetype': 'd2c_brand', 'fulfillment_type': 'physical_delivery', 'documentation_maturity': 0.90},
-        'M000002': {'merchant_name': 'Gyan IAS Prep', 'merchant_archetype': 'education_coaching', 'fulfillment_type': 'digital_service', 'documentation_maturity': 0.65},
-        'M000003': {'merchant_name': 'Zari and Zest by Mira', 'merchant_archetype': 'individual_social_seller', 'fulfillment_type': 'physical_delivery', 'documentation_maturity': 0.40},
-        'M000004': {'merchant_name': 'Fit Circle Coaching', 'merchant_archetype': 'fitness_services', 'fulfillment_type': 'digital_service', 'documentation_maturity': 0.30}
+def stable_seed(value: str) -> int:
+    digest = hashlib.sha256(f"{SEED}:{value}".encode()).hexdigest()
+    return int(digest[:12], 16) % 2_000_000_000
+
+def rng_for(value: str) -> np.random.Generator:
+    return np.random.default_rng(stable_seed(value))
+
+def merchant_name(archetype: str, i: int) -> str:
+    if i <= 7:
+        return DEMO_MERCHANTS[f"M{i:06d}"][0]
+    prefixes = {
+        "social_seller": ["Urban", "Desi", "Ananya", "Mira"],
+        "d2c_brand": ["Prime", "Nova", "Royal", "Indie"],
+        "marketplace_retailer": ["Super", "Mega", "One", "All"],
+        "subscription_edtech": ["Gyan", "Study", "Learn", "Scholar"],
+        "saas_tools": ["Code", "Data", "Cloud", "Tech"],
+        "fitness_membership": ["Fit", "Active", "Strong", "Pulse"],
+        "travel_booking": ["Trip", "Travel", "Journey", "Go"],
     }
+    suffixes = {
+        "social_seller": ["Crafts", "Studio", "Creations", "Workshop"],
+        "d2c_brand": ["Wear", "Style", "Essentials", "Store"],
+        "marketplace_retailer": ["Mart", "Bazaar", "Cart", "Hub"],
+        "subscription_edtech": ["Academy", "Prep", "Classes", "Hub"],
+        "saas_tools": ["Tools", "Suite", "Stack", "Pilot"],
+        "fitness_membership": ["Forge", "Zone", "Centre", "Arena"],
+        "travel_booking": ["Well", "Easy", "Smart", "Link"],
+    }
+    r = rng_for(f"name:{i}")
+    if archetype == "social_seller":
+        return f"{FIRST_NAMES[r.integers(len(FIRST_NAMES))]}'s {suffixes[archetype][r.integers(4)]}"
+    return f"{prefixes[archetype][r.integers(4)]}{suffixes[archetype][r.integers(4)]}"
 
-    doc_mat_map = {'high': 0.85, 'moderate': 0.60, 'low': 0.35}
+def allocate_archetypes() -> list[str]:
+    result = []
+    for archetype, count in ARCHETYPE_COUNTS.items():
+        result.extend([archetype] * count)
+    # Preserve demo archetypes in slots 1-7 and shuffle the rest deterministically.
+    tail = result[:]
+    demo_arch = [DEMO_MERCHANTS[f"M{i:06d}"][1] for i in range(1, 8)]
+    for a in demo_arch:
+        tail.remove(a)
+    rng = rng_for("archetype-order")
+    rng.shuffle(tail)
+    return demo_arch + tail
 
-    mat_list = []
-    for idx, row in merchants_df.iterrows():
-        mid = row['merchant_id']
-        if mid in demo_updates:
-            for k, v in demo_updates[mid].items():
-                merchants_df.at[idx, k] = v
-            mat_list.append(demo_updates[mid]['documentation_maturity'])
+def allocate_sizes() -> list[str]:
+    sizes = []
+    for size, count in SIZE_COUNTS.items():
+        sizes.extend([size] * count)
+    # First seven are the demo sizes.
+    demos = [DEMO_MERCHANTS[f"M{i:06d}"][2] for i in range(1, 8)]
+    tail = sizes[:]
+    for s in demos:
+        tail.remove(s)
+    rng = rng_for("size-order")
+    rng.shuffle(tail)
+    return demos + tail
+
+def generate_merchants() -> pd.DataFrame:
+    archetypes = allocate_archetypes()
+    sizes = allocate_sizes()
+    rows = []
+
+    for i in range(1, N_MERCHANTS + 1):
+        mid = f"M{i:06d}"
+        arch, size = archetypes[i - 1], sizes[i - 1]
+        r = rng_for(f"merchant:{mid}")
+        lo, hi = SIZE_TXN_RANGES[size]
+        annual = int(r.integers(lo, hi + 1))
+        if i <= 7:
+            annual = {
+                1: 1800, 2: 3800, 3: 3800, 4: 860, 5: 1600, 6: 3800, 7: 8500
+            }[i]
+            maturity = DEMO_MERCHANTS[mid][3]
         else:
-            curr_val = row['documentation_maturity']
-            if isinstance(curr_val, str) and curr_val in doc_mat_map:
-                val = doc_mat_map[curr_val] + np.random.uniform(-0.05, 0.05)
-            elif isinstance(curr_val, (int, float)):
-                val = float(curr_val)
-            else:
-                val = 0.60
-            val = float(np.clip(val, 0.25, 0.95))
-            merchants_df.at[idx, 'documentation_maturity'] = val
-            mat_list.append(val)
+            maturity = float(np.clip(
+                DOCUMENTATION_MATURITY[arch] + r.uniform(-0.08, 0.08), 0.15, 0.98
+            ))
 
-    merchants_df.to_csv(os.path.join(core_dir, 'merchants.csv'), index=False)
-    print(f"Updated {len(merchants_df)} merchants in merchants.csv")
+        subscription = SUBSCRIPTION[arch]
+        price_points = (
+            sorted(r.choice(PRICE_MENUS[arch], size=min(4, len(PRICE_MENUS[arch])), replace=False).tolist())
+            if subscription else []
+        )
 
-    print("\n--- STEP 2: Updating Transactions Payment Methods ---")
-    card_methods = ['credit_card', 'debit_card']
-
-    payment_methods = transactions_df['payment_method'].values
-    n_tx = len(transactions_df)
-    target_card_count = 88500
-
-    current_card_indices = [i for i, pm in enumerate(payment_methods) if pm in card_methods]
-    current_non_card_indices = [i for i, pm in enumerate(payment_methods) if pm not in card_methods]
-
-    needed_cards = target_card_count - len(current_card_indices)
-    if needed_cards > 0:
-        convert_indices = np.random.choice(current_non_card_indices, size=needed_cards, replace=False)
-        for idx in convert_indices:
-            payment_methods[idx] = np.random.choice(['credit_card', 'debit_card'], p=[0.7, 0.3])
-
-    transactions_df['payment_method'] = payment_methods
-    transactions_df.to_csv(os.path.join(core_dir, 'transactions.csv'), index=False)
-    card_tx_count = (transactions_df['payment_method'].isin(card_methods)).sum()
-    print(f"Updated transactions.csv: {card_tx_count} card transactions out of {n_tx} total ({card_tx_count/n_tx*100:.1f}%)")
-
-    print("\n--- STEP 3: Generating Card Disputes ---")
-    card_txs = transactions_df[transactions_df['payment_method'].isin(card_methods)].copy()
-    card_txs['timestamp_dt'] = pd.to_datetime(card_txs['timestamp'])
-
-    demo_mids = ['M000001', 'M000002', 'M000003', 'M000004']
-    selected_tx_ids = []
-
-    for dmid in demo_mids:
-        dtxs = card_txs[card_txs['merchant_id'] == dmid]
-        n_sample = min(len(dtxs), 52)
-        selected_tx_ids.extend(np.random.choice(dtxs['transaction_id'].values, size=n_sample, replace=False))
-
-    rem_card_txs = card_txs[~card_txs['transaction_id'].isin(selected_tx_ids)]
-    target_total_disputes = 1620
-    rem_needed = target_total_disputes - len(selected_tx_ids)
-
-    archetype_weights = {
-        'digital_saas': 1.8,
-        'education_coaching': 1.6,
-        'fitness_services': 1.5,
-        'travel_hospitality': 1.4,
-        'd2c_brand': 1.0,
-        'online_marketplace_retailer': 1.0,
-        'food_local_commerce': 0.8,
-        'individual_social_seller': 0.9,
-        'healthcare_diagnostics': 0.7
-    }
-
-    rem_weights = rem_card_txs['merchant_archetype'].map(archetype_weights).fillna(1.0).values
-    rem_weights /= rem_weights.sum()
-
-    sampled_rem_tx_ids = np.random.choice(rem_card_txs['transaction_id'].values, size=rem_needed, replace=False, p=rem_weights)
-    selected_tx_ids.extend(sampled_rem_tx_ids)
-
-    disputed_txs = card_txs[card_txs['transaction_id'].isin(selected_tx_ids)].copy()
-    disputed_txs = disputed_txs.sort_values('timestamp_dt').reset_index(drop=True)
-
-    print(f"Total sampled disputes: {len(disputed_txs)} (Demo merchants: {[len(disputed_txs[disputed_txs['merchant_id']==m]) for m in demo_mids]})")
-
-    reason_codes = [
-        'UNAUTHORIZED_TRANSACTION',
-        'MERCHANDISE_NOT_RECEIVED',
-        'MERCHANDISE_NOT_AS_DESCRIBED',
-        'CREDIT_NOT_PROCESSED',
-        'RECURRING_BILLING_DISPUTE',
-        'DUPLICATE_TRANSACTION'
-    ]
-    reason_probs = [0.22, 0.26, 0.20, 0.15, 0.12, 0.05]
-
-    reason_descriptions = {
-        'UNAUTHORIZED_TRANSACTION': 'Cardholder claims transaction was unauthorized or fraudulent',
-        'MERCHANDISE_NOT_RECEIVED': 'Cardholder claims ordered merchandise or service was not received',
-        'MERCHANDISE_NOT_AS_DESCRIBED': 'Cardholder claims merchandise arrived damaged, defective, or not as described',
-        'CREDIT_NOT_PROCESSED': 'Cardholder claims promised credit or refund was not posted',
-        'RECURRING_BILLING_DISPUTE': 'Cardholder claims recurring subscription billing was canceled or unauthorized',
-        'DUPLICATE_TRANSACTION': 'Cardholder claims single purchase was billed multiple times'
-    }
-
-    networks = ['Visa', 'Mastercard', 'RuPay']
-    network_probs = [0.50, 0.33, 0.17]
-
-    ev_types = ['order_confirmation', 'invoice', 'shipping_label', 'tracking_number', 'delivery_confirmation', 'customer_communication']
-    shipping_ev_types = {'shipping_label', 'tracking_number', 'delivery_confirmation'}
-
-    req_matrix = {
-        'UNAUTHORIZED_TRANSACTION':      [1, 1, 0, 0, 0, 1],
-        'MERCHANDISE_NOT_RECEIVED':      [1, 0, 1, 1, 1, 0],
-        'MERCHANDISE_NOT_AS_DESCRIBED':  [1, 0, 0, 0, 1, 1],
-        'CREDIT_NOT_PROCESSED':          [1, 1, 0, 0, 0, 1],
-        'RECURRING_BILLING_DISPUTE':     [1, 1, 0, 0, 0, 1],
-        'DUPLICATE_TRANSACTION':         [1, 1, 0, 0, 0, 0]
-    }
-
-    # Calibrated intercepts to hit per-reason win targets precisely
-    # Target win rates: UNAUTHORIZED 0.20, NOT_RECEIVED 0.62, NOT_AS_DESCRIBED 0.38, CREDIT 0.45, RECURRING 0.42, DUPLICATE 0.70
-    reason_intercepts = {
-        'UNAUTHORIZED_TRANSACTION': -2.05,
-        'MERCHANDISE_NOT_RECEIVED': 0.00,
-        'MERCHANDISE_NOT_AS_DESCRIBED': -0.95,
-        'CREDIT_NOT_PROCESSED': -0.90,
-        'RECURRING_BILLING_DISPUTE': -0.40,
-        'DUPLICATE_TRANSACTION': 0.48
-    }
-
-    merchant_dict = merchants_df.set_index('merchant_id').to_dict(orient='index')
-
-    disputes_list = []
-    evidence_list = []
-
-    for idx, tx in disputed_txs.iterrows():
-        disp_id = f"DSP{idx+1:06d}"
-        tx_id = tx['transaction_id']
-        mid = tx['merchant_id']
-        cid = tx['customer_id']
-        tx_dt = tx['timestamp_dt']
-        m_info = merchant_dict.get(mid, {})
-
-        fulfillment = m_info.get('fulfillment_type', 'physical_delivery')
-        is_physical = (fulfillment == 'physical_delivery')
-        doc_maturity = float(m_info.get('documentation_maturity', 0.60))
-
-        disp_created_dt = tx_dt + pd.Timedelta(days=random.randint(3, 45), hours=random.randint(0, 23))
-        respond_by_dt = disp_created_dt + pd.Timedelta(days=random.randint(10, 21))
-        days_to_deadline = (respond_by_dt - disp_created_dt).days
-
-        r_code = np.random.choice(reason_codes, p=reason_probs)
-        r_desc = reason_descriptions[r_code]
-        net = np.random.choice(networks, p=network_probs)
-
-        disp_amt = round(float(tx['amount']), 2)
-
-        # Contest rate 60-70% overall (target ~65%)
-        p_contest = np.clip(0.40 + 0.40 * doc_maturity, 0.45, 0.85)
-        is_contested = (np.random.random() < p_contest)
-        merchant_action = 'contested' if is_contested else 'accepted'
-
-        if is_contested:
-            contest_fee = float(np.random.choice([500.0, 450.0, 350.0, 150.0, 15.0], p=[0.75, 0.10, 0.08, 0.05, 0.02]))
-            op_cost = float(round(contest_fee * 0.50, 2))
-        else:
-            contest_fee = 0.0
-            op_cost = 0.0
-
-        # Generate Evidence records (exactly 6)
-        req_pattern = req_matrix[r_code]
-        req_scores = []
-        has_missing_req = False
-
-        for ev_idx, ev_type in enumerate(ev_types):
-            ev_id = f"EVID{(idx*6 + ev_idx + 1):07d}"
-
-            is_req_raw = req_pattern[ev_idx]
-            is_shipping = (ev_type in shipping_ev_types)
-
-            if is_shipping and not is_physical:
-                app_status = 'NOT_APPLICABLE'
-                available = 0
-                is_req = 0
-                is_rel = 0
-                q_score = 0.0
-            else:
-                is_req = is_req_raw
-                is_rel = 1 if is_req == 1 else (1 if np.random.random() < 0.6 else 0)
-
-                p_avail = np.clip(0.35 + 0.60 * doc_maturity, 0.20, 0.98)
-                if np.random.random() < p_avail:
-                    app_status = 'APPLICABLE'
-                    available = 1
-                    q_score = round(float(np.random.uniform(0.60, 0.98) * (0.8 + 0.2 * doc_maturity)), 2)
-                    q_score = float(np.clip(q_score, 0.60, 0.98))
-                else:
-                    app_status = 'UNAVAILABLE'
-                    available = 0
-                    q_score = 0.0
-
-            if is_req == 1:
-                req_scores.append(available * q_score)
-                if available == 0:
-                    has_missing_req = True
-
-            ev_dt = tx_dt + pd.Timedelta(seconds=random.randint(0, int((disp_created_dt - tx_dt).total_seconds())))
-            source_sys = 'logistics' if is_shipping else ('crm' if ev_type == 'customer_communication' else ('billing' if ev_type in ('invoice', 'order_confirmation') else 'ops'))
-
-            evidence_list.append({
-                'evidence_id': ev_id,
-                'dispute_id': disp_id,
-                'transaction_id': tx_id,
-                'evidence_type': ev_type,
-                'applicability_status': app_status,
-                'available': available,
-                'required': is_req,
-                'relevant': is_rel,
-                'quality_score': q_score,
-                'evidence_timestamp': ev_dt.strftime('%Y-%m-%d %H:%M:%S'),
-                'source_system': source_sys
-            })
-
-        if not is_contested:
-            disp_outcome = 'accepted_refunded'
-            res_date_str = ""
-        else:
-            base_intercept = reason_intercepts[r_code]
-            # Amount penalty log(dispute_amount) tuned for 8-15 pt quintile gap
-            amount_penalty = -0.13 * np.log(disp_amt / 2500.0)
-
-            avg_req_score = np.mean(req_scores) if len(req_scores) > 0 else 0.5
-            ev_bonus = 1.4 * avg_req_score
-            missing_penalty = -1.20 if has_missing_req else 0.20
-
-            noise = np.random.normal(0, 0.40)
-
-            latent_logit = base_intercept + amount_penalty + ev_bonus + missing_penalty + noise
-            win_prob = 1.0 / (1.0 + np.exp(-latent_logit))
-
-            is_won = (np.random.random() < win_prob)
-            disp_outcome = 'won' if is_won else 'lost'
-
-            res_dt = disp_created_dt + pd.Timedelta(days=random.randint(7, 45))
-            res_date_str = res_dt.strftime('%Y-%m-%d %H:%M:%S')
-
-        disputes_list.append({
-            'dispute_id': disp_id,
-            'transaction_id': tx_id,
-            'merchant_id': mid,
-            'customer_id': cid,
-            'network': net,
-            'reason_code': r_code,
-            'reason_description': r_desc,
-            'dispute_created_at': disp_created_dt.strftime('%Y-%m-%d %H:%M:%S'),
-            'dispute_amount': disp_amt,
-            'contest_fee': contest_fee,
-            'operational_review_cost': op_cost,
-            'respond_by': respond_by_dt.strftime('%Y-%m-%d %H:%M:%S'),
-            'days_to_deadline': days_to_deadline,
-            'merchant_action': merchant_action,
-            'dispute_outcome': disp_outcome,
-            'resolution_date': res_date_str
+        rows.append({
+            "merchant_id": mid,
+            "merchant_name": merchant_name(arch, i),
+            "archetype": arch,
+            "industry": arch,
+            "city": CITIES[r.integers(len(CITIES))],
+            "business_size": size,
+            "fulfillment_type": FULFILLMENT[arch],
+            "subscription_supported": subscription,
+            "documentation_maturity": round(maturity, 6),
+            "price_points": json.dumps(price_points),
+            "merchant_age_months": int(r.integers(12, 121)),
+            "refund_policy_documented": int(r.random() < maturity),
+            "fulfillment_tracking_available": int(FULFILLMENT[arch] == "physical_delivery" and r.random() < 0.95),
+            "annual_transactions": annual,
         })
 
-    disputes_df = pd.DataFrame(disputes_list)
-    evidence_df = pd.DataFrame(evidence_list)
+    return pd.DataFrame(rows)
 
-    print("\n--- STEP 4: Saving disputes.csv and evidence.csv ---")
-    disputes_df.to_csv(os.path.join(core_dir, 'disputes.csv'), index=False)
-    evidence_df.to_csv(os.path.join(core_dir, 'evidence.csv'), index=False)
-    print(f"Saved disputes.csv ({len(disputes_df)} rows, {len(disputes_df.columns)} cols)")
-    print(f"Saved evidence.csv ({len(evidence_df)} rows, {len(evidence_df.columns)} cols)")
+def generate_customers(merchants: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for m in merchants.itertuples():
+        r = rng_for(f"customers:{m.merchant_id}")
+        # Customer volume is proportional to merchant activity, with repeat purchasing.
+        n = max(5, int(m.annual_transactions * r.uniform(0.30, 0.42)))
+        for j in range(n):
+            rows.append({
+                "customer_id": f"CUST_{m.merchant_id}_{j+1:05d}",
+                "merchant_id": m.merchant_id,
+                "customer_name": f"{FIRST_NAMES[r.integers(len(FIRST_NAMES))]} {LAST_NAMES[r.integers(len(LAST_NAMES))]}",
+                "city": CITIES[r.integers(len(CITIES))],
+                "created_at": (
+                    pd.Timestamp(START_DATE) - pd.Timedelta(days=int(r.integers(30, 730)))
+                ).strftime("%Y-%m-%d"),
+                "email_domain": r.choice(["gmail.com", "outlook.com", "yahoo.com", "corporate.com"], p=[.45, .25, .20, .10]),
+                "contact_present": int(r.random() < .653),
+                "city_tier": int(r.choice([1, 2, 3], p=[.35, .40, .25])),
+            })
+    return pd.DataFrame(rows)
 
-    print("\n--- STEP 5: Updating demo_merchants.csv ---")
-    demo_df = pd.DataFrame([
-        {
-            'merchant_id': 'M000001',
-            'demo_merchant_name': 'Wonderloon Bags',
-            'merchant_archetype': 'd2c_brand',
-            'fulfillment_type': 'physical_delivery',
-            'documentation_maturity': 0.90,
-            'demo_description': 'Strong evidence: tracked shipping, signed delivery, documented policy. High maturity.'
-        },
-        {
-            'merchant_id': 'M000002',
-            'demo_merchant_name': 'Gyan IAS Prep',
-            'merchant_archetype': 'education_coaching',
-            'fulfillment_type': 'digital_service',
-            'documentation_maturity': 0.65,
-            'demo_description': 'Subscription disputes, no shipping evidence. Medium maturity.'
-        },
-        {
-            'merchant_id': 'M000003',
-            'demo_merchant_name': 'Zari and Zest by Mira',
-            'merchant_archetype': 'individual_social_seller',
-            'fulfillment_type': 'physical_delivery',
-            'documentation_maturity': 0.40,
-            'demo_description': 'Informal courier, often unsigned delivery, no written policy. Low maturity.'
-        },
-        {
-            'merchant_id': 'M000004',
-            'demo_merchant_name': 'Fit Circle Coaching',
-            'merchant_archetype': 'fitness_services',
-            'fulfillment_type': 'digital_service',
-            'documentation_maturity': 0.30,
-            'demo_description': 'No physical evidence at all. Minimal maturity.'
+def generate_transactions(merchants: pd.DataFrame, customers: pd.DataFrame) -> pd.DataFrame:
+    # Use annual_transactions as the transaction count contract and adjust the
+    # final merchant counts proportionally so the final dataset is exactly 500k.
+    counts = merchants["annual_transactions"].astype(int).to_numpy()
+    counts = np.maximum(counts, 1)
+    scaled = np.floor(counts / counts.sum() * N_TRANSACTIONS).astype(int)
+    scaled[np.argmax(counts)] += N_TRANSACTIONS - scaled.sum()
+
+    customer_map = customers.groupby("merchant_id")["customer_id"].apply(list).to_dict()
+    chunks = []
+    tx_counter = 1
+    start = pd.Timestamp(START_DATE)
+    end = pd.Timestamp(END_DATE)
+    seconds = int((end - start).total_seconds())
+
+    for idx, m in enumerate(merchants.itertuples()):
+        n = int(scaled[idx])
+        r = rng_for(f"transactions:{m.merchant_id}")
+        custs = customer_map[m.merchant_id]
+
+        if m.subscription_supported:
+            prices = json.loads(m.price_points)
+            amounts = r.choice(prices, size=n, replace=True)
+        else:
+            lo, hi = AMOUNT_RANGES.get(m.archetype, (300, 10000))
+            amounts = r.integers(lo, hi + 1, size=n)
+
+        ts = np.sort(r.integers(0, seconds + 1, size=n))
+        payment = r.choice(
+            ["credit_card", "upi", "debit_card", "netbanking", "wallet"],
+            size=n, p=[.34024, .300142, .27929, .050192, .030136]
+        )
+        card_mask = np.isin(payment, ["credit_card", "debit_card"])
+        network = np.array([None] * n, dtype=object)
+        network[card_mask] = r.choice(["Visa", "Mastercard", "RuPay"], size=card_mask.sum(), p=[.50, .33, .17])
+        otp = np.where(
+            card_mask,
+            np.where(r.random(n) < .917, "passed", "failed"),
+            "not_applicable",
+        )
+        attempts = r.choice([1, 2, 3, 4, 5], size=n, p=[.699, .180, .080, .030, .011])
+        international = (r.random(n) < .04).astype(int)
+        mismatch = (r.random(n) < .08).astype(int)
+        customer_ids = r.choice(custs, size=n)
+        # Anonymous customers are represented by missing/empty customer IDs.
+        anon = r.random(n) < .20
+        customer_ids = np.where(anon, "", customer_ids)
+
+        delivery = np.array([None] * n, dtype=object)
+        signed = np.array([None] * n, dtype=object)
+        delivered_at = np.array([None] * n, dtype=object)
+        if m.fulfillment_type == "physical_delivery":
+            u = r.random(n)
+            delivery = np.where(u < .80, "delivered",
+                        np.where(u < .92, "in_transit",
+                        np.where(u < .96, "rto", "lost")))
+            delivered_mask = delivery == "delivered"
+            signed[delivered_mask] = (r.random(delivered_mask.sum()) < .616).astype(int)
+            for j in np.flatnonzero(delivered_mask):
+                delivered_at[j] = (start + pd.Timedelta(seconds=int(ts[j] + r.integers(1, 7 * 86400)))).strftime("%Y-%m-%d %H:%M:%S")
+
+        chunk = pd.DataFrame({
+            "transaction_id": [f"TXN{tx_counter+i:08d}" for i in range(n)],
+            "merchant_id": m.merchant_id,
+            "customer_id": customer_ids,
+            "amount": amounts.astype(int),
+            "payment_method": payment,
+            "network": network,
+            "otp_3ds_status": otp,
+            "avs_match": (r.random(n) < .849).astype(int),
+            "device_id": [f"DEV{int(x):08d}" for x in r.integers(1, 9_000_000, size=n)],
+            "ip_risk_score": np.round(r.beta(2, 8, size=n), 4),
+            "payment_attempt_count": attempts,
+            "is_international": international,
+            "billing_shipping_mismatch": mismatch,
+            "delivery_status": delivery,
+            "delivered_at": delivered_at,
+            "has_signed_proof": signed,
+            "timestamp": [start + pd.Timedelta(seconds=int(x)) for x in ts],
+        })
+        chunks.append(chunk)
+        tx_counter += n
+
+    tx = pd.concat(chunks, ignore_index=True)
+    tx = tx.sort_values(["merchant_id", "timestamp"]).reset_index(drop=True)
+
+    known = tx["customer_id"].ne("")
+    tx["customer_previous_orders"] = 0
+    tx["customer_previous_spend"] = 0
+    tx["customer_previous_disputes"] = 0
+    tx["days_since_customer_last_purchase"] = 0
+
+    tx.loc[known, "customer_previous_orders"] = tx.loc[known].groupby(["merchant_id", "customer_id"]).cumcount()
+    tx.loc[known, "customer_previous_spend"] = (
+        tx.loc[known].groupby(["merchant_id", "customer_id"])["amount"].cumsum()
+        - tx.loc[known, "amount"]
+    ).astype(int)
+    previous_ts = tx.loc[known].groupby(["merchant_id", "customer_id"])["timestamp"].shift(1)
+    tx.loc[known, "days_since_customer_last_purchase"] = (
+        (tx.loc[known, "timestamp"] - previous_ts).dt.total_seconds().div(86400).fillna(0).astype(int)
+    )
+
+    return tx.sort_values("timestamp").reset_index(drop=True)
+
+def generate_disputes(transactions: pd.DataFrame, merchants: pd.DataFrame) -> pd.DataFrame:
+    card = transactions[transactions["payment_method"].isin(["credit_card", "debit_card"])].copy()
+    # A single deterministic sample creates the exact final dispute count.
+    r = rng_for("disputes:sample")
+    selected_idx = r.choice(card.index.to_numpy(), size=N_DISPUTES, replace=False)
+    dtx = card.loc[selected_idx].copy().reset_index(drop=True)
+
+    merchant_lookup = merchants.set_index("merchant_id")
+    reasons = []
+    for row in dtx.itertuples():
+        weights = REASON_WEIGHTS[row.merchant_id and merchant_lookup.loc[row.merchant_id, "archetype"]]
+        reasons.append(r.choice(REASON_CODES, p=weights))
+
+    r = rng_for("disputes:fields")
+    created = []
+    for ts in pd.to_datetime(dtx["timestamp"]):
+        created.append(ts + pd.Timedelta(days=int(r.integers(3, 121)), hours=int(r.integers(0, 24))))
+
+    dispute_created = pd.Series(created)
+    respond_by = dispute_created + pd.to_timedelta(r.integers(7, 22, N_DISPUTES), unit="D")
+    contested = r.random(N_DISPUTES) < .655
+    networks = dtx["network"].to_numpy()
+
+    fees = np.where(contested, np.where(networks == "Visa", r.integers(600, 751, N_DISPUTES),
+                         np.where(networks == "Mastercard", r.integers(500, 651, N_DISPUTES),
+                                  r.integers(400, 501, N_DISPUTES))), 0)
+    op_cost = np.where(contested, r.integers(150, 301, N_DISPUTES), 0)
+
+    # Documentation maturity influences contested outcomes, but outcome columns
+    # are generated independently of any post-dispute decision fields.
+    maturity = dtx["merchant_id"].map(merchants.set_index("merchant_id")["documentation_maturity"]).to_numpy()
+    won_prob = np.clip(.28 + .40 * maturity, .15, .72)
+    won = contested & (r.random(N_DISPUTES) < won_prob)
+
+    outcome = np.where(~contested, "accepted_refunded", np.where(won, "won", "lost"))
+    resolution = np.where(contested, respond_by, dispute_created + pd.Timedelta(days=2))
+
+    return pd.DataFrame({
+        "dispute_id": [f"DSP{i:06d}" for i in range(1, N_DISPUTES + 1)],
+        "transaction_id": dtx["transaction_id"].to_numpy(),
+        "merchant_id": dtx["merchant_id"].to_numpy(),
+        "customer_id": dtx["customer_id"].to_numpy(),
+        "network": networks,
+        "reason_code": reasons,
+        "reason_description": [REASON_DESCRIPTIONS[x] for x in reasons],
+        "dispute_created_at": dispute_created.dt.strftime("%Y-%m-%d %H:%M:%S"),
+        "dispute_amount": dtx["amount"].astype(int).to_numpy(),
+        "contest_fee": fees.astype(int),
+        "operational_review_cost": op_cost.astype(int),
+        "respond_by": respond_by.dt.strftime("%Y-%m-%d %H:%M:%S"),
+        "days_to_deadline": (respond_by - dispute_created).dt.days,
+        "merchant_action": np.where(contested, "contested", "accepted"),
+        "dispute_outcome": outcome,
+        "resolution_date": pd.Series(resolution).dt.strftime("%Y-%m-%d %H:%M:%S"),
+    })
+
+def generate_evidence(disputes: pd.DataFrame, merchants: pd.DataFrame) -> pd.DataFrame:
+    merchant_map = merchants.set_index("merchant_id")
+    rows = []
+    evidence_id = 1
+    r = rng_for("evidence")
+    for d in disputes.itertuples():
+        fulfil = merchant_map.loc[d.merchant_id, "fulfillment_type"]
+        maturity = float(merchant_map.loc[d.merchant_id, "documentation_maturity"])
+        slots = EVIDENCE_SLOTS[fulfil]
+        required = REQUIRED[d.reason_code]
+        dispute_time = pd.Timestamp(d.dispute_created_at)
+        tx_time = pd.Timestamp(
+            # transaction timestamp is not stored in disputes, so use a safe pre-dispute timestamp.
+            dispute_time - pd.Timedelta(days=int(r.integers(1, 90)))
+        )
+        for i, ev_type in enumerate(slots):
+            req = int(required[i])
+            available = int(r.random() < np.clip(maturity + .08, .05, .98))
+            quality = round(float(r.uniform(.55, .98) * (.75 + .25 * maturity)), 2) if available else 0.0
+            if available:
+                status = "APPLICABLE"
+            else:
+                status = "UNAVAILABLE"
+            rows.append({
+                "evidence_id": f"EVID{evidence_id:07d}",
+                "dispute_id": d.dispute_id,
+                "transaction_id": d.transaction_id,
+                "evidence_type": ev_type,
+                "applicability_status": status,
+                "available": available,
+                "required": req,
+                "relevant": int(available and (r.random() < .92)),
+                "quality_score": quality,
+                "source_system": r.choice(["erp", "support", "crm", "payment_gateway", "shipping"]),
+                "evidence_timestamp": (
+                    tx_time + (dispute_time - tx_time) * r.random()
+                ).strftime("%Y-%m-%d %H:%M:%S"),
+            })
+            evidence_id += 1
+    return pd.DataFrame(rows)
+
+def save_demo_merchants(merchants: pd.DataFrame, disputes: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for mid, (name, arch, size, maturity, priority) in DEMO_MERCHANTS.items():
+        m = merchants.loc[merchants["merchant_id"] == mid].iloc[0]
+        count = int((disputes["merchant_id"] == mid).sum())
+        descriptions = {
+            "M000001": "Hand-crocheted bags sold through Instagram DMs, ~60 orders/month, no written return policy.",
+            "M000002": "Direct-to-consumer footwear brand with ergonomic designs, clear return policy, full tracking.",
+            "M000003": "Online civil-services test-prep platform with tiered subscription plans.",
+            "M000004": "Developer productivity and code-optimisation SaaS with monthly/annual tiers.",
+            "M000005": "Neighbourhood gym chain with monthly, quarterly, and annual memberships.",
+            "M000006": "Online travel agency for domestic tourism; booking-only, no subscription.",
+            "M000007": "Multi-category marketplace: electronics, fashion, home goods; robust SLA tracking.",
         }
-    ])
-    demo_df.to_csv(os.path.join(demo_dir, 'demo_merchants.csv'), index=False)
-    print(f"Saved demo_merchants.csv ({len(demo_df)} rows)")
+        rows.append({
+            "merchant_id": mid,
+            "merchant_name": name,
+            "merchant_archetype": arch,
+            "fulfillment_type": FULFILLMENT[arch],
+            "subscription_supported": SUBSCRIPTION[arch],
+            "business_size": size,
+            "documentation_maturity": maturity,
+            "demo_priority": priority,
+            "business_description": descriptions[mid],
+            "annual_transactions": int(m["annual_transactions"]),
+            "dispute_count": count,
+        })
+    return pd.DataFrame(rows)
 
-    print("\n--- DATASET REGENERATION COMPLETE ---")
+def main():
+    CORE_DIR.mkdir(parents=True, exist_ok=True)
+    DEMO_DIR.mkdir(parents=True, exist_ok=True)
 
-if __name__ == '__main__':
-    generate_dataset()
+    merchants = generate_merchants()
+    customers = generate_customers(merchants)
+    transactions = generate_transactions(merchants, customers)
+    disputes = generate_disputes(transactions, merchants)
+    evidence = generate_evidence(disputes, merchants)
+    demo = save_demo_merchants(merchants, disputes)
+
+    merchants.to_csv(CORE_DIR / "merchants.csv", index=False)
+    customers.to_csv(CORE_DIR / "customers.csv", index=False)
+    transactions.to_csv(CORE_DIR / "transactions.csv", index=False)
+    disputes.to_csv(CORE_DIR / "disputes.csv", index=False)
+    evidence.to_csv(CORE_DIR / "evidence.csv", index=False)
+    demo.to_csv(DEMO_DIR / "demo_merchants.csv", index=False)
+
+    print("\nGenerated:")
+    for name, df in [
+        ("merchants", merchants), ("customers", customers),
+        ("transactions", transactions), ("disputes", disputes),
+        ("evidence", evidence), ("demo_merchants", demo),
+    ]:
+        print(f"  {name:16s} {len(df):,} rows")
+    print("\nRun validate_dataset.py next.")
+
+if __name__ == "__main__":
+    main()
